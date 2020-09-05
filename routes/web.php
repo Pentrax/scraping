@@ -17,4 +17,4 @@ use Illuminate\Support\Facades\Route;
 //   // return view('welcome');
 //    Route::resource('contacts', 'DefaultController');
 //});
-Route::get('/', 'DefaultController@index')->name('profile');
+Route::get('/', 'DefaultController@index')->name('default');
