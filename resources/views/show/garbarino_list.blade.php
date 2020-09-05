@@ -16,11 +16,11 @@
 
         <table class="table table-hover">
             <tbody>
-        @foreach($data as $item)
+        @foreach($paginate as $item)
             <tr>
                 <td>
                     <div class="card w-100" style="margin-bottom: 15px;">
-                        <h5 class="card-header">{{$item["title"]}}</h5>
+                        <h5 class="card-header"><div style="background-color: red"> <img src="{{$item["brand"]}}" width="115" itemprop="image" ></div>{{$item["title"]}}</h5>
                         <div class="card-body">
                             <div class="row">
                                 <div class="col">
@@ -46,6 +46,9 @@
     </div>
 
 
+    <div class="d-flex justify-content-center">
+        {!! $paginate->links() !!}
+    </div>
 
 
 

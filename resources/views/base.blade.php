@@ -10,7 +10,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <title>Laravel 7 & MySQL CRUD Tutorial</title>
+    <title>Scraping Web</title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css" />
 
     <style type="text/css">
@@ -22,7 +22,7 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="navbar-brand" href="#">Home</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -50,13 +50,19 @@
                 <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
             </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+
     </div>
 </nav>
+
 <div class="container">
+
+        <form action="{{route('default')}}" class="form-inline mx-2 my-auto d-inline w-100">
+            <div class="form-group  mb-2">
+            <input class="form-control" style="width: 80%"  name="search" type="search" placeholder="encontra lo que buscas ..." aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" style="margin-left: 5px" type="submit">Encontrá</button>
+            </div>
+        </form>
+
     @yield('main')
 </div>
 <script src="{{ asset('js/app.js') }}" type="text/js"></script>
