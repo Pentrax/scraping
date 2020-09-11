@@ -3,10 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="b993c3f0-4081-40a2-a0b0-1e51a65493ab" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/DefaultController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/DefaultController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/base.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/base.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/show/garbarino_list.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/show/garbarino_list.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -138,7 +134,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/show" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Proyecto de integracion/web_scraper" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -169,7 +165,8 @@
       <option name="presentableId" value="Default" />
       <updated>1598801406944</updated>
       <workItem from="1598801408034" duration="8852000" />
-      <workItem from="1598911273410" duration="6299000" />
+      <workItem from="1598911273410" duration="7520000" />
+      <workItem from="1599757913076" duration="38000" />
     </task>
     <servers />
   </component>
@@ -177,6 +174,10 @@
     <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1599757948840">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1599757948840" />
     <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1598801481081">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
