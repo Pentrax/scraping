@@ -5,25 +5,17 @@ namespace App\Services;
 
 use Goutte\Client;
 use GuzzleHttp\Client as GuzzleClient;
-class ScrapingGarb
+
+class ScrapingGarb extends BaseScraping
 {
     public function search($parameters){
-        $goutteClient = new Client();
-        $guzzleClient = new GuzzleClient(
-            array(
-                'timeout' => 60,
-                'verify' => false,
-            )
-        );
 
         $data = array();
-
-        $goutteClient->setClient($guzzleClient);
 
         $parameters = $this->formatParametes($parameters);
 
         $url = "https://www.garbarino.com/q/{$parameters}/srch?q={$parameters}";
-        $crawler = $goutteClient->request('GET',$url);
+        $crawler = $this->goutteClient->request('GET',$url);
         $data = $crawler->filter('.itemBox')->each(function ( $node) {
 
             $div_item = $node->filter('.itemBox--carousel');

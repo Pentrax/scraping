@@ -20,7 +20,11 @@
             <tr>
                 <td>
                     <div class="card w-100" style="margin-bottom: 15px;">
-                        <h5 class="card-header"><div style="background-color: red"> <img src="{{$item["brand"]}}" width="115" itemprop="image" ></div>{{$item["title"]}}</h5>
+                        <h5 class="card-header div-garba"><div style="background-color: red;    width: 15%;
+    border-radius: 12px;
+    padding-left: 20px;
+    margin-bottom: 15px;
+"> <img src="{{$item["brand"]}}" width="115" itemprop="image" ></div>{{$item["title"]}}</h5>
                         <div class="card-body">
                             <div class="row">
                                 <div class="col">
