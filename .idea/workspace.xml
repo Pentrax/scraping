@@ -3,6 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="b993c3f0-4081-40a2-a0b0-1e51a65493ab" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+
+      <change beforePath="$PROJECT_DIR$/app/Services/ScrapingGarb.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/ScrapingGarb.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/show/garbarino_list.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/show/garbarino_list.blade.php" afterDir="false" />
+
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,7 +139,11 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+<<<<<<< HEAD
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../Proyecto de integracion/web_scraper" />
+=======
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Services" />
+>>>>>>> 59d3eb4fda770b673fb3669cafb0f60d43bc397c
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -146,6 +155,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/Services" />
       <recent name="C:\Users\pablo\OneDrive\Documents\FACULTAD\scraping_app\resources\views\show" />
       <recent name="C:\Users\pablo\OneDrive\Documents\FACULTAD\scraping_app\resources\views" />
     </key>
