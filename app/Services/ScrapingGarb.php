@@ -5,6 +5,9 @@ namespace App\Services;
 
 use Goutte\Client;
 use GuzzleHttp\Client as GuzzleClient;
+use Symfony\Component\DomCrawler\Crawler;
+
+const CANTIDAD_DE_ELEMENTOS_POR_PAGINA = 48;
 
 class ScrapingGarb extends BaseScraping
 {
@@ -12,37 +15,22 @@ class ScrapingGarb extends BaseScraping
 
         $data = array();
 
-        $parameters = $this->formatParametes($parameters);
+        $parameters = $this->formatParameters($parameters);
 
         $url = "https://www.garbarino.com/q/{$parameters}/srch?q={$parameters}";
+
         $crawler = $this->goutteClient->request('GET',$url);
-        $data = $crawler->filter('.itemBox')->each(function ( $node) {
 
-            $div_item = $node->filter('.itemBox--carousel');
-            //$img = $div_item->filter('img')->attr('src');
-            $src = $div_item->filter('img')->attr('src');
-            $href = "https://www.garbarino.com/".$div_item->filter('a')->attr('href');
-            $price = $node->filter(".value-item");
-            $title = $node->filter(".itemBox--title");
+        $pages = $this->getCantidadDePaginas($crawler);
 
-        // dd($node->text(),$href,$src,$div_item->html(),$price->html(),$title->html(),$node->html());
-
-            return [
-                'price' => $price->text(),
-                'content'=> preg_replace('/\W\w+\s*(\W*)$/', '$1',  $node->text()),
-                "title" => $title->text(),
-                'src' => $src,
-                'href' => $href,
-                'brand' => '//dj4i04i24axgu.cloudfront.net/normi/statics/0.2.120/garbarino/images/logo-garbarino.svg'
-            ];
-        });
+        $data = $this->getContenido($pages,$parameters);
 
         return $data;
     }
 
-    private function formatParametes($parameters){
+    private function formatParameters($parameters){
         $string="";
-        $format = $data   = preg_split('/\s+/', $parameters);
+        $format =  preg_split('/\s+/', $parameters);
         $count = count($format);
 
         for ($i=0;$i <= $count-1;$i++){
@@ -53,6 +41,54 @@ class ScrapingGarb extends BaseScraping
             }
         }
         return $string;
+    }
+
+    private function getCantidadDePaginas(Crawler $crawler){
+
+        $elements =$crawler->filter(".breadcrumb-content")->each(function (Crawler $node) {
+                    $offset = str_replace("(","",$node->filter("span")->html());
+                    $offset = str_replace(")","",$offset);
+                    $offset = str_replace(" resultados","",$offset);
+                    $offset = intval($offset);
+                    return $offset;
+                });
+
+        $pages = (int) ceil(intval($elements[0]) / CANTIDAD_DE_ELEMENTOS_POR_PAGINA);
+
+         return $pages;
+
+    }
+
+
+    private function getContenido($pages,$parameters){
+
+        $data = [];
+
+        for ($i=1;$i <= $pages;$i++){
+            $uri = "https://www.garbarino.com/q/{$parameters}/srch?page={$i}&q";
+
+            $crawler = $this->goutteClient->request('GET',$uri);
+            $data[$i] = $crawler->filter('.itemBox')->each(function ( $node) {
+
+                $div_item = $node->filter('.itemBox--carousel');
+                $src = $div_item->filter('img')->attr('src');
+                $href = "https://www.garbarino.com/".$div_item->filter('a')->attr('href');
+                $price = $node->filter(".value-item");
+                $title = $node->filter(".itemBox--title");
+
+                //  dd($node->text(),$href,$src,$div_item->html(),$price->html(),$title->html(),$node->html());
+
+                return [
+                    'price' => $price->text(),
+                    'content'=> preg_replace('/\W\w+\s*(\W*)$/', '$1',  $node->text()),
+                    "title" => $title->text(),
+                    'src' => $src,
+                    'href' => $href,
+                    'brand' => '//dj4i04i24axgu.cloudfront.net/normi/statics/0.2.120/garbarino/images/logo-garbarino.svg'
+                ];
+            });
+        }
+        return $data;
     }
 
 }
