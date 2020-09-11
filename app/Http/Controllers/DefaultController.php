@@ -23,7 +23,7 @@ class DefaultController extends Controller
 
         $scrap = new ScrapingGarb();
         $data = $scrap->search($request->input("search"));
-
+        dd($data);
         $paginate =  $this->paginate($data);
 
         return view('show.garbarino_list', compact('paginate'));
