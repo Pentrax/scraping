@@ -3,17 +3,28 @@
 
 namespace App\Services;
 
+use App\Busquedas;
 use Goutte\Client;
 use GuzzleHttp\Client as GuzzleClient;
+use Illuminate\Support\Facades\DB;
 use Symfony\Component\DomCrawler\Crawler;
 
 const CANTIDAD_DE_ELEMENTOS_POR_PAGINA = 48;
+const EMPRESA = "Garbarino";
 
 class ScrapingGarb extends BaseScraping
 {
     public function search($parameters){
 
         $data = array();
+        $busqueda = DB::table("Busquedas")->where("busqueda",$parameters)->orderBy("precio","desc")->get();
+        foreach ($busqueda as $x){
+           $x->cantidad_busquedas = $x->cantidad_busquedas +1;
+
+        }
+        die();
+        dd($busqueda);
+
 
         $parameters = $this->formatParameters($parameters);
 
@@ -23,7 +34,7 @@ class ScrapingGarb extends BaseScraping
 
         $pages = $this->getCantidadDePaginas($crawler);
 
-        $data = $this->getContenido($pages,$parameters);
+        $data = $this->getContenido($pages,$parameters,$busqueda);
 
         return $data;
     }
@@ -60,7 +71,7 @@ class ScrapingGarb extends BaseScraping
     }
 
 
-    private function getContenido($pages,$parameters){
+    private function getContenido($pages,$parameters,$busqueda){
 
         $data = [];
 
@@ -74,21 +85,55 @@ class ScrapingGarb extends BaseScraping
                 $src = $div_item->filter('img')->attr('src');
                 $href = "https://www.garbarino.com/".$div_item->filter('a')->attr('href');
                 $price = $node->filter(".value-item");
+                $price = str_replace("$","",$price->text());
+                $price = floatval($price);
                 $title = $node->filter(".itemBox--title");
 
                 //  dd($node->text(),$href,$src,$div_item->html(),$price->html(),$title->html(),$node->html());
 
                 return [
-                    'price' => $price->text(),
-                    'content'=> preg_replace('/\W\w+\s*(\W*)$/', '$1',  $node->text()),
-                    "title" => $title->text(),
+                    'precio' => number_format($price,2),
+                    'contenido'=> preg_replace('/\W\w+\s*(\W*)$/', '$1',  $node->text()),
+                    "titulo" => $title->text(),
                     'src' => $src,
                     'href' => $href,
-                    'brand' => '//dj4i04i24axgu.cloudfront.net/normi/statics/0.2.120/garbarino/images/logo-garbarino.svg'
+                    'brand' => '//dj4i04i24axgu.cloudfront.net/normi/statics/0.2.120/garbarino/images/logo-garbarino.svg',
+                    'empresa' => EMPRESA
                 ];
             });
         }
+
+        if(is_null($busqueda)){
+
+            $this->saveBusqueda($data,$parameters);
+        }
+
         return $data;
+    }
+
+
+    public function saveBusqueda($data,$parameters){
+
+        foreach ($data as $info){
+
+            foreach ($info as $item){
+
+                $busqueda = new Busquedas();
+
+                $busqueda->precio = $item["precio"];
+                $busqueda->contenido = $item["contenido"];
+                $busqueda->titulo = $item["titulo"];
+                $busqueda->src = $item["src"];
+                $busqueda->href = $item["href"];
+                $busqueda->brand = $item["brand"];
+                $busqueda->empresa = $item["empresa"];
+                $busqueda->busqueda = $parameters;
+                $busqueda->cantidad_busquedas = 1;
+
+                $busqueda->save();
+            }
+        }
+
     }
 
 }
