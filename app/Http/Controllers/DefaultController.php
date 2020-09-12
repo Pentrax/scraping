@@ -22,9 +22,9 @@ class DefaultController extends Controller
     function index(Request $request){
 
         $scrap = new ScrapingGarb();
-        $data = $scrap->search($request->input("search"));
-        dd($data);
-        $paginate =  $this->paginate($data);
+        $elements = $scrap->search($request->input("search"));
+
+        $paginate =  $this->paginate($elements);
 
         return view('show.garbarino_list', compact('paginate'));
     }

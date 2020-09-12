@@ -16,7 +16,8 @@
 
         <table class="table table-hover">
             <tbody>
-        @foreach($paginate as $item)
+        @foreach($paginate->items() as $items)
+            @foreach($items as $item)
             <tr>
                 <td>
                     <div class="card w-100" style="margin-bottom: 15px;">
@@ -24,14 +25,14 @@
     border-radius: 12px;
     padding-left: 20px;
     margin-bottom: 15px;
-"> <img src="{{$item["brand"]}}" width="115" itemprop="image" ></div>{{$item["title"]}}</h5>
+"> <img src="{{$item["brand"]}}" width="115" itemprop="image" ></div>{{$item["titulo"]}}</h5>
                         <div class="card-body">
                             <div class="row">
                                 <div class="col">
                                     <img src="{{$item["src"]}}" width="115" itemprop="image" >
                                 </div>
                                 <div class="col-6">
-                                    {{$item['content']}}
+                                    {{$item['contenido']}}
                                 </div>
                                 <div class="col text-right">
                                     <a href="{{$item["href"]}}" class="btn btn-primary" style="width: 100%" target="_blank">Ver</a>
@@ -42,7 +43,7 @@
                 </td>
 
             </tr>
-
+            @endforeach
         @endforeach
             </tbody>
         </table>
@@ -51,7 +52,7 @@
 
 
     <div class="d-flex justify-content-center">
-        {!! $paginate->links() !!}
+        {!! $paginate->render() !!}
     </div>
 
 
