@@ -7,6 +7,7 @@ use App\Busquedas;
 use Goutte\Client;
 use GuzzleHttp\Client as GuzzleClient;
 use Illuminate\Support\Facades\DB;
+use phpDocumentor\Reflection\Types\True_;
 use Symfony\Component\DomCrawler\Crawler;
 
 const CANTIDAD_DE_ELEMENTOS_POR_PAGINA = 48;
@@ -14,16 +15,23 @@ const EMPRESA = "Garbarino";
 
 class ScrapingGarb extends BaseScraping
 {
+//    protected $parameters;
+//
+//    public function __construct($parameters)
+//    {
+//
+//        $this->parameters = $parameters;
+//        $this->search($this->parameters);
+//    }
+
     public function search($parameters){
 
-        $data = array();
-
-        $busqueda = DB::table("Busquedas")->where("busqueda",$parameters)->orderBy("precio","desc")->get();
+        $busqueda = $this->getBusqueda($parameters);
 
         if ($busqueda->count() > 0){
-            return  $busqueda;
+            return  true;
         }
-
+      //  dd($busqueda);
 //        dd($busqueda->count());
 
 //        foreach ($busqueda as $x){
@@ -42,9 +50,9 @@ class ScrapingGarb extends BaseScraping
 
         $pages = $this->getCantidadDePaginas($crawler);
 
-        $data = $this->getContenido($pages,$parameters,$busqueda);
+         $this->getContenido($pages,$parameters,$busqueda);
 
-        return $data;
+        return $this->getBusqueda($parameters);
     }
 
     private function formatParameters($parameters){
@@ -87,20 +95,21 @@ class ScrapingGarb extends BaseScraping
             $uri = "https://www.garbarino.com/q/{$parameters}/srch?page={$i}&q";
 
             $crawler = $this->goutteClient->request('GET',$uri);
-            $data[$i] = $crawler->filter('.itemBox')->each(function ( $node) {
+            $data[$i] = $crawler->filter('.itemBox')->each(function (Crawler $node) {
 
                 $div_item = $node->filter('.itemBox--carousel');
                 $src = $div_item->filter('img')->attr('src');
                 $href = "https://www.garbarino.com/".$div_item->filter('a')->attr('href');
                 $price = $node->filter(".value-item");
                 $price = str_replace("$","",$price->text());
-                $price = floatval($price);
+                $price = str_replace(".","",$price);
+
                 $title = $node->filter(".itemBox--title");
 
                 //  dd($node->text(),$href,$src,$div_item->html(),$price->html(),$title->html(),$node->html());
 
                 return [
-                    'precio' => number_format($price,2),
+                    'precio' =>intval($price),
                     'contenido'=> preg_replace('/\W\w+\s*(\W*)$/', '$1',  $node->text()),
                     "titulo" => $title->text(),
                     'src' => $src,
@@ -110,13 +119,12 @@ class ScrapingGarb extends BaseScraping
                 ];
             });
         }
-        //dd(if()$busqueda);
-        if($busqueda->count() == 0){
 
-            $this->saveBusqueda($data,$parameters);
-        }
 
-        return $data;
+
+       $this->saveBusqueda($data,$parameters);
+
+        return true;
     }
 
 
@@ -142,6 +150,19 @@ class ScrapingGarb extends BaseScraping
             }
         }
 
+    }
+
+    public function getBusqueda($parameters){
+
+        $busqueda = DB::table("Busquedas")
+            ->where("busqueda",$parameters)
+            ->orderBy("precio","asc")
+            ->paginate(5)
+            ->appends ( array (
+                'search' => $parameters
+            ) );
+
+        return $busqueda;
     }
 
 }

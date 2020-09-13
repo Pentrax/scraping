@@ -19,10 +19,51 @@
         }
     </style>
 
+    <style>
+        /*body {*/
+        /*    font-family: "Lato", sans-serif;*/
+        /*}*/
+
+        .sidenav {
+            height: 100%;
+            width: 160px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            padding-top: 20px;
+        }
+
+        .sidenav a {
+            padding: 6px 8px 6px 16px;
+            text-decoration: none;
+            font-size: 25px;
+            color: #818181;
+            display: block;
+        }
+
+        .sidenav a:hover {
+            color: #f1f1f1;
+        }
+
+        .main {
+            margin-left: 250px; /* Same as the width of the sidenav */
+            /*font-size: 28px; !* Increased text to enable scrolling *!*/
+            padding: 0px 10px;
+        }
+
+        @media screen and (max-height: 450px) {
+            .sidenav {padding-top: 15px;}
+            .sidenav a {font-size: 18px;}
+        }
+    </style>
+
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Home</a>
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <a class="navbar-brand" href="{{route("home")}}">Home</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -54,15 +95,28 @@
     </div>
 </nav>
 
-<div class="container">
+<div class="sidenav">
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#clients">Clients</a>
+    <a href="#contact">Contact</a>
+</div>
+<div class="container main">
 
-        <form action="{{route('search')}}"  method="POST" class="form-inline mx-2 my-auto d-inline w-100">
-            @csrf
-            <div class="form-group  mb-2">
-            <input class="form-control" style="width: 80%"  name="search" type="search" placeholder="encontra lo que buscas ..." aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" style="margin-left: 5px" type="submit">Encontrá</button>
+{{--        <form action="{{route('search')}}"  method="POST" class="form-inline mx-2 my-auto d-inline w-100">--}}
+{{--            @csrf--}}
+{{--            <div class="form-group  mb-2">--}}
+{{--            <input class="form-control" style="width: 80%"  name="search" type="search" placeholder="encontra lo que buscas ..." aria-label="Search">--}}
+{{--            <button class="btn btn-outline-success my-2 my-sm-0" style="margin-left: 5px" type="submit">Encontrá</button>--}}
+{{--            </div>--}}
+{{--        </form>--}}
+    {!! Form::open(['route' => 'search','method' => 'put','class'=> 'form-inline mx-2 my-auto d-inline w-100']) !!}
+        {!!  Form::token() !!}
+            <div class="form-group  mb-2" style="padding-top: 50px">
+                {!!  Form::text('search', $search,['class' => 'form-control','style' => 'width:80%','placeholder'=> 'encontra lo que buscas ...']); !!}
+                {!!  Form::submit('Busca',['class'=> 'btn btn-outline-success my-2 my-sm-0',"style"=>'margin-left: 5px']) !!}
             </div>
-        </form>
+    {!! Form::close() !!}
 
     @yield('main')
 </div>

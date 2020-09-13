@@ -1,6 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
+use App\Busquedas;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,5 +19,17 @@ use Illuminate\Support\Facades\Route;
 //   // return view('welcome');
 //    Route::resource('contacts', 'DefaultController');
 //});
-Route::get('/', 'DefaultController@index')->name('default');
+Route::get('/', 'DefaultController@index')->name('home');
 Route::any('/search', 'DefaultController@search')->name('search');
+//Route::any('/search', function (){
+//    $search = \request()->input("search");
+//    if ($search !=""){
+//        DB::table("Busquedas")
+//            ->where("busqueda",$search)
+//            ->orderBy("precio","desc")
+//            ->paginate(5)
+//            ->setpath('');
+//    }
+//
+//})->name("search");
+
