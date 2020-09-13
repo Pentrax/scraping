@@ -56,7 +56,8 @@
 
 <div class="container">
 
-        <form action="{{route('default')}}" class="form-inline mx-2 my-auto d-inline w-100">
+        <form action="{{route('search')}}"  method="POST" class="form-inline mx-2 my-auto d-inline w-100">
+            @csrf
             <div class="form-group  mb-2">
             <input class="form-control" style="width: 80%"  name="search" type="search" placeholder="encontra lo que buscas ..." aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" style="margin-left: 5px" type="submit">Encontrá</button>

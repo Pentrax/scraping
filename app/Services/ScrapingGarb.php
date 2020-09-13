@@ -17,13 +17,21 @@ class ScrapingGarb extends BaseScraping
     public function search($parameters){
 
         $data = array();
-        $busqueda = DB::table("Busquedas")->where("busqueda",$parameters)->orderBy("precio","desc")->get();
-        foreach ($busqueda as $x){
-           $x->cantidad_busquedas = $x->cantidad_busquedas +1;
 
+        $busqueda = DB::table("Busquedas")->where("busqueda",$parameters)->orderBy("precio","desc")->get();
+
+        if ($busqueda->count() > 0){
+            return  $busqueda;
         }
-        die();
-        dd($busqueda);
+
+//        dd($busqueda->count());
+
+//        foreach ($busqueda as $x){
+//           $x->cantidad_busquedas = $x->cantidad_busquedas +1;
+//
+//        }
+//        die();
+//        dd($busqueda);
 
 
         $parameters = $this->formatParameters($parameters);
@@ -102,8 +110,8 @@ class ScrapingGarb extends BaseScraping
                 ];
             });
         }
-
-        if(is_null($busqueda)){
+        //dd(if()$busqueda);
+        if($busqueda->count() == 0){
 
             $this->saveBusqueda($data,$parameters);
         }

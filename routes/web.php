@@ -18,3 +18,4 @@ use Illuminate\Support\Facades\Route;
 //    Route::resource('contacts', 'DefaultController');
 //});
 Route::get('/', 'DefaultController@index')->name('default');
+Route::any('/search', 'DefaultController@search')->name('search');

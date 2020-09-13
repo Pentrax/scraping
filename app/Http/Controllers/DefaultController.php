@@ -21,12 +21,7 @@ class DefaultController extends Controller
      */
     function index(Request $request){
 
-        $scrap = new ScrapingGarb();
-        $elements = $scrap->search($request->input("search"));
-
-        $paginate =  $this->paginate($elements);
-
-        return view('show.garbarino_list', compact('paginate'));
+            return view('base');
     }
 
     /**
@@ -41,6 +36,18 @@ class DefaultController extends Controller
         $items = $items instanceof Collection ? $items : Collection::make($items);
 
         return new LengthAwarePaginator($items->forPage($page, $perPage), $items->count(), $perPage, $page, $options);
+    }
+
+
+    public function search(Request $request){
+
+        $scrap = new ScrapingGarb();
+        $elements = $scrap->search($request->input("search"));
+
+        $paginate =  $this->paginate($elements);
+
+        return view('show.garbarino_list', compact('paginate'));
+
     }
 
 }
