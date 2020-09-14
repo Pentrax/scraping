@@ -122,7 +122,7 @@ class ScrapingGarb extends BaseScraping
 
 
 
-       $this->saveBusqueda($data,$parameters);
+     //  $this->saveBusqueda($data,$parameters);
 
         return true;
     }
