@@ -1,7 +1,7 @@
 require('./bootstrap');
 
-$( document ).ready(function() {
-    alert( "ready!" );
+$(function (){
+    alert("hola")
 });
 
 

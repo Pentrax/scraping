@@ -13,10 +13,10 @@ class ScrapingFactory
 
          $garb = new ScrapingGarb();
 
-         $garb->search($parametrs);
+       //  $garb->search($parametrs);
 
-         $frav = new ScrapingFrav();
-         $frav->search($parametrs);
+//         $frav = new ScrapingFrav();
+//         $frav->search($parametrs);
 
         return $this->getBusqueda($parametrs);
 

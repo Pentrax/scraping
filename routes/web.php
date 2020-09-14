@@ -21,15 +21,5 @@ use App\Busquedas;
 //});
 Route::get('/', 'DefaultController@index')->name('home');
 Route::any('/search', 'DefaultController@search')->name('search');
-//Route::any('/search', function (){
-//    $search = \request()->input("search");
-//    if ($search !=""){
-//        DB::table("Busquedas")
-//            ->where("busqueda",$search)
-//            ->orderBy("precio","desc")
-//            ->paginate(5)
-//            ->setpath('');
-//    }
-//
-//})->name("search");
+Route::any('/fravega', 'DefaultController@fravega')->name('fravega');
 

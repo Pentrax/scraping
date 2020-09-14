@@ -9,6 +9,7 @@ use App\Services\ScrapingGarb;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\DB;
 
 class DefaultController extends Controller
 {
@@ -52,6 +53,24 @@ class DefaultController extends Controller
         //$paginate = $scrap_2->search($search);
 
       //  $paginate = $scrap->search($search);
+
+
+        return view('show.list', compact('paginate',"search"))->with($search);
+
+    }
+
+    public function fravega(Request  $request){
+        //dd($request->get("search"),$request->get("empresa"));
+        $search = $request->get("search");
+        $empresa = $request->get("empresa");
+        $paginate = DB::table("Busquedas")
+            ->where("busqueda",$search)
+            ->where("empresa",$empresa)
+            ->orderBy("precio","asc")
+            ->paginate(15)
+            ->appends ( array (
+                'search' => $request->get("search")
+            ) );
 
 
         return view('show.list', compact('paginate',"search"))->with($search);
