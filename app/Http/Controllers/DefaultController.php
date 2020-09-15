@@ -42,7 +42,7 @@ class DefaultController extends Controller
 
 
     public function search(Request $request){
-       // dd($request);
+       // dd($request->get("empresa"),$request->get("search"));
       //  $scrap = new ScrapingGarb();
         //$scrap_2 = new ScrapingFrav();
         $search = $request->input("search");
@@ -61,6 +61,7 @@ class DefaultController extends Controller
 
     public function fravega(Request  $request){
         //dd($request->get("search"),$request->get("empresa"));
+        //dd($request->get("empresa"),$request->get("search"));
         $search = $request->get("search");
         $empresa = $request->get("empresa");
         $paginate = DB::table("Busquedas")
@@ -72,8 +73,12 @@ class DefaultController extends Controller
                 'search' => $request->get("search")
             ) );
 
+            $data =[
+                'search' => $search,
+                'empresa' => $empresa
+            ];
 
-        return view('show.list', compact('paginate',"search"))->with($search);
+         return view('show.list', compact('paginate','search','empresa'))->with("search",$search)->with("empresa",$empresa);
 
     }
 

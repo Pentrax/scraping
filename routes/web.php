@@ -21,5 +21,14 @@ use App\Busquedas;
 //});
 Route::get('/', 'DefaultController@index')->name('home');
 Route::any('/search', 'DefaultController@search')->name('search');
-Route::any('/fravega', 'DefaultController@fravega')->name('fravega');
+//Route::any('/search', function(){
+//    if (request()->has("fravega")){
+//        $paginate = App\Busquedas::where("empresa","Fravega")->paginate(15);
+//        return view('show.list', compact('paginate',"search"))->with("fravega");
+//    }else{
+//
+//
+//    }
+//})->name('search');
+Route::any('/fravega/{search}/{empresa}', 'DefaultController@fravega')->name('fravega');
 

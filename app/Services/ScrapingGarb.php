@@ -31,7 +31,7 @@ class ScrapingGarb extends BaseScraping
         if ($busqueda->count() > 0){
             return  true;
         }
-      //  dd($busqueda);
+        dd($busqueda);
 //        dd($busqueda->count());
 
 //        foreach ($busqueda as $x){
@@ -122,7 +122,7 @@ class ScrapingGarb extends BaseScraping
 
 
 
-     //  $this->saveBusqueda($data,$parameters);
+       $this->saveBusqueda($data,$parameters);
 
         return true;
     }

@@ -26,9 +26,9 @@ class ScrapingFrav extends BaseScraping
 
         $busqueda = $this->getBusqueda($parameters);
 
-//        if ($busqueda->count() > 0){
-//            return  true;
-//        }
+        if ($busqueda->count() > 0){
+            return  true;
+        }
       //  dd($busqueda);
 //        dd($busqueda->count());
 
@@ -121,7 +121,7 @@ class ScrapingFrav extends BaseScraping
 
 
 
-     //  $this->saveBusqueda($data,$parameters);
+       $this->saveBusqueda($data,$parameters);
 
         return true;
     }

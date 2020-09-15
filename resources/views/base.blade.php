@@ -35,7 +35,7 @@
     <nav id="sidebar" class="sidebar-wrapper">
         <div class="sidebar-content">
             <div class="sidebar-brand">
-                <a href="{{url("home")}}">Scraping</a>
+                <a href="{{url("/")}}">Scraping</a>
                 <div id="close-sidebar">
                     <i class="fas fa-times"></i>
                 </div>
@@ -84,7 +84,7 @@
                         <div class="sidebar-submenu">
                             <ul>
                                 <li>
-                                    <a href="#" id="fravega-filter">Fravega
+                                    <a href="{{route("fravega/{$search}/fravega/")}}" id="fravega-filter">Fravega
 {{--                                        <span class="badge badge-pill badge-success">Pro</span>--}}
                                     </a>
                                 </li>
