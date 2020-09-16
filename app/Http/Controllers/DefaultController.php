@@ -42,43 +42,34 @@ class DefaultController extends Controller
 
 
     public function search(Request $request){
-       // dd($request->get("empresa"),$request->get("search"));
-      //  $scrap = new ScrapingGarb();
-        //$scrap_2 = new ScrapingFrav();
+
         $search = $request->input("search");
 
         $scraping = new ScrapingFactory();
-        $paginate = $scraping->scraping($search);
-
-        //$paginate = $scrap_2->search($search);
-
-      //  $paginate = $scrap->search($search);
+        $result = $scraping->scraping($search);
 
 
-        return view('show.list', compact('paginate',"search"))->with($search);
+        return view('show.list', compact('result',"search"))->with($search);
 
     }
 
-    public function fravega(Request  $request){
-        //dd($request->get("search"),$request->get("empresa"));
-        //dd($request->get("empresa"),$request->get("search"));
+    public function filter(Request  $request){
+
         $search = $request->get("search");
-        $empresa = $request->get("empresa");
-        $paginate = DB::table("Busquedas")
+        $empresa = "Fravega";
+
+        $result = DB::table("Busquedas")
             ->where("busqueda",$search)
             ->where("empresa",$empresa)
             ->orderBy("precio","asc")
-            ->paginate(15)
+            ->paginate(16)
             ->appends ( array (
-                'search' => $request->get("search")
+                'search' => $search,
+                "empresa" => $empresa
             ) );
 
-            $data =[
-                'search' => $search,
-                'empresa' => $empresa
-            ];
 
-         return view('show.list', compact('paginate','search','empresa'))->with("search",$search)->with("empresa",$empresa);
+         return view('show.list', compact("result","search"));
 
     }
 

@@ -84,7 +84,7 @@
                         <div class="sidebar-submenu">
                             <ul>
                                 <li>
-                                    <a href="{{route("fravega/{$search}/fravega/")}}" id="fravega-filter">Fravega
+                                    <a href="{{route("fravega",["search"=>$search , "empresa"=> "Fravega"])}}" id="fravega-filter">Fravega
 {{--                                        <span class="badge badge-pill badge-success">Pro</span>--}}
                                     </a>
                                 </li>
@@ -228,17 +228,6 @@
         </div>
     </nav>
 
-{{--<div class=" row fixed-top search-cont">--}}
-
-
-{{--    {!! Form::open(['route' => 'search','method' => 'put','class'=> 'form-inline mx-2 my-auto d-inline w-100']) !!}--}}
-{{--    {!!  Form::token() !!}--}}
-{{--    <div class="form-group  mb-2" style="padding-top: 15px">--}}
-{{--        {!!  Form::text('search', $search,['class' => 'form-control','style' => 'width:80%','placeholder'=> 'encontra lo que buscas ...']); !!}--}}
-{{--        {!!  Form::submit('Busca',['class'=> 'btn btn-outline-success my-2 my-sm-0',"style"=>'margin-left: 5px']) !!}--}}
-{{--    </div>--}}
-{{--    {!! Form::close() !!}--}}
-{{--</div>--}}
     <main class="page-content">
         <div class="container-fluid">
             <div class="row">

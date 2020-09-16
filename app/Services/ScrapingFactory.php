@@ -37,7 +37,7 @@ class ScrapingFactory
         $busqueda = DB::table("Busquedas")
             ->where("busqueda",$parameters)
             ->orderBy("precio","asc")
-            ->paginate(15)
+            ->paginate(16)
             ->appends ( array (
                 'search' => $parameters
             ) );

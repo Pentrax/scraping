@@ -18,4 +18,8 @@ class Busquedas extends Model
         'empresa',
         'busqueda'
     ];
+
+    public function userId(){
+        return $this->belongsTo("App\Models\User");
+    }
 }

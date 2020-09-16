@@ -14,7 +14,7 @@
     </div>
     <div class="row">
 
-        @foreach($paginate->items() as $item)
+        @foreach($result->items() as $item)
             <div class="col">
                     <div class="card hvr-underline-from-center " id="{{$item->empresa}}" style="width: 18rem;height: 97%">
                         <div class="card-body">
@@ -55,7 +55,7 @@ margin-left: 15px" class="card-link btn btn-primary" style="width: 100%" target=
 
 
     <div class="d-flex justify-content-center">
-        {!! $paginate->links() !!}
+        {!! $result->links() !!}
     </div>
 
 

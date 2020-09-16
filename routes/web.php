@@ -30,5 +30,5 @@ Route::any('/search', 'DefaultController@search')->name('search');
 //
 //    }
 //})->name('search');
-Route::any('/fravega/{search}/{empresa}', 'DefaultController@fravega')->name('fravega');
+Route::any('/filter', 'DefaultController@filter')->name('fravega');
 
