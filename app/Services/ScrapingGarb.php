@@ -15,24 +15,17 @@ const EMPRESA = "Garbarino";
 
 class ScrapingGarb extends BaseScraping
 {
-//    protected $parameters;
-//
-//    public function __construct($parameters)
-//    {
-//
-//        $this->parameters = $parameters;
-//        $this->search($this->parameters);
-//    }
 
     public function search($parameters){
 
-        $busqueda = $this->getBusqueda($parameters);
+        $parametros_sin_formatear = strtolower($parameters);
+        $busqueda = $this->getBusquedaReciente(strtolower($parameters));
 
         if ($busqueda->count() > 0){
             return  true;
         }
-        dd($busqueda);
-//        dd($busqueda->count());
+
+
 
 //        foreach ($busqueda as $x){
 //           $x->cantidad_busquedas = $x->cantidad_busquedas +1;
@@ -50,9 +43,9 @@ class ScrapingGarb extends BaseScraping
 
         $pages = $this->getCantidadDePaginas($crawler);
 
-         $this->getContenido($pages,$parameters,$busqueda);
+         $this->getContenido($pages,$parameters,$parametros_sin_formatear);
 
-        return $this->getBusqueda($parameters);
+        return $this->getBusquedaReciente($parameters);
     }
 
     private function formatParameters($parameters){
@@ -87,7 +80,7 @@ class ScrapingGarb extends BaseScraping
     }
 
 
-    private function getContenido($pages,$parameters,$busqueda){
+    private function getContenido($pages,$parameters,$parametros_sin_formatear){
 
         $data = [];
 
@@ -122,7 +115,7 @@ class ScrapingGarb extends BaseScraping
 
 
 
-       $this->saveBusqueda($data,$parameters);
+       $this->saveBusqueda($data,$parametros_sin_formatear);
 
         return true;
     }
@@ -143,7 +136,7 @@ class ScrapingGarb extends BaseScraping
                 $busqueda->href = $item["href"];
                 $busqueda->brand = $item["brand"];
                 $busqueda->empresa = $item["empresa"];
-                $busqueda->busqueda = $parameters;
+                $busqueda->busqueda = strtolower($parameters);
                 $busqueda->cantidad_busquedas = 1;
 
                 $busqueda->save();
@@ -152,10 +145,11 @@ class ScrapingGarb extends BaseScraping
 
     }
 
-    public function getBusqueda($parameters){
+    public function getBusquedaReciente($parameters){
 
         $busqueda = DB::table("Busquedas")
             ->where("busqueda",$parameters)
+            ->where("empresa","Garbarino")
             ->orderBy("precio","asc")
             ->paginate(5)
             ->appends ( array (

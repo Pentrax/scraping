@@ -42,9 +42,9 @@ $(function (){
 
     });
 
-    const heart = $('#heart');
-        heart.on('click', function() {
-        heart.;
-    });
+    // const heart = $('#heart');
+    //     heart.on('click', function() {
+    //     heart.;
+    // });
 
 });

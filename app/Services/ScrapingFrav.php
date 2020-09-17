@@ -24,11 +24,13 @@ class ScrapingFrav extends BaseScraping
 
     public function search($parameters){
 
-        $busqueda = $this->getBusqueda($parameters);
+        $parametros_sin_formatear = strtolower($parameters);
 
-        if ($busqueda->count() > 0){
-            return  true;
-        }
+        $busqueda = $this->getBusquedaReciente(strtolower($parameters));
+
+//        if ($busqueda->count() > 0){
+//            return  true;
+//        }
       //  dd($busqueda);
 //        dd($busqueda->count());
 
@@ -48,9 +50,9 @@ class ScrapingFrav extends BaseScraping
 
         $pages = $this->getCantidadDePaginas($crawler);
 
-         $this->getContenido($pages,$parameters);
+         $this->getContenido($pages,$parameters,$parametros_sin_formatear);
 
-        return $this->getBusqueda($parameters);
+        return $this->getBusquedaReciente($parameters);
     }
 
     private function formatParameters($parameters){
@@ -84,7 +86,7 @@ class ScrapingFrav extends BaseScraping
     }
 
 
-    private function getContenido($pages,$parameters){
+    private function getContenido($pages,$parameters,$parametros_sin_formatear){
 
         $data = [];
 
@@ -104,8 +106,13 @@ class ScrapingFrav extends BaseScraping
                 $price = str_replace(".","",$price);
 
                 $title = $node->filter(".PieceTitle-sc-1eg7yvt-0")->text();
+                $contenido = preg_replace('/\W\w+\s*(\W*)$/', '$1',  $node->text());
+                $contenido = str_replace("Rectangle","",$contenido);
 
-                //  dd($node->text(),$href,$src,$div_item->html(),$price->html(),$title->html(),$node->html());
+                /** VER EL TEMA DEL PRECIO DEL PRODUCTO Y EL DESCUENTO */
+                /** AGREGAR UNA TABLA NUEVA ESTADISTICAS */
+                dd($contenido);
+//                  dd($node->text(),$href,$src,$div_item->html(),$price->html(),$title->html(),$node->html());
 
                 return [
                     'precio' =>intval($price),
@@ -121,7 +128,7 @@ class ScrapingFrav extends BaseScraping
 
 
 
-       $this->saveBusqueda($data,$parameters);
+       $this->saveBusqueda($data,$parametros_sin_formatear);
 
         return true;
     }
@@ -142,7 +149,7 @@ class ScrapingFrav extends BaseScraping
                 $busqueda->href = $item["href"];
                 $busqueda->brand = $item["brand"];
                 $busqueda->empresa = $item["empresa"];
-                $busqueda->busqueda = $parameters;
+                $busqueda->busqueda = strtolower($parameters);
                 $busqueda->cantidad_busquedas = 1;
 
                 $busqueda->save();
@@ -151,10 +158,11 @@ class ScrapingFrav extends BaseScraping
 
     }
 
-    public function getBusqueda($parameters){
+    public function getBusquedaReciente($parameters){
 
         $busqueda = DB::table("Busquedas")
             ->where("busqueda",$parameters)
+            ->where("empresa","Fravega")
             ->orderBy("precio","asc")
             ->paginate(5)
             ->appends ( array (

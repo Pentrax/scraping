@@ -19,13 +19,9 @@ class ScrapingFactory
 
     public function scraping($parametrs){
 
-        // $garb = new ScrapingGarb();
-          //  $this->garbarino->search($parametrs);
-           // $this->fravega->search($parametrs);
-       //  $garb->search($parametrs);
 
-//         $frav = new ScrapingFrav();
-//         $frav->search($parametrs);
+            $this->garbarino->search($parametrs);
+            $this->fravega->search($parametrs);
 
         return $this->getBusqueda($parametrs);
 
