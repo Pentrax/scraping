@@ -15,20 +15,9 @@ use App\Busquedas;
 |
 */
 
-//Route::get('/', function () {
-//   // return view('welcome');
-//    Route::resource('contacts', 'DefaultController');
-//});
+
 Route::get('/', 'DefaultController@index')->name('home');
 Route::any('/search', 'DefaultController@search')->name('search');
-//Route::any('/search', function(){
-//    if (request()->has("fravega")){
-//        $paginate = App\Busquedas::where("empresa","Fravega")->paginate(15);
-//        return view('show.list', compact('paginate',"search"))->with("fravega");
-//    }else{
-//
-//
-//    }
-//})->name('search');
-Route::any('/filter', 'DefaultController@filter')->name('fravega');
+
+Route::any('/filter', 'DefaultController@filter')->name('filter');
 

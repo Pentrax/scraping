@@ -1,6 +1,6 @@
 
 $(function (){
-   console.log("work")
+
     $(".sidebar-dropdown > a").click(function() {
         $(".sidebar-submenu").slideUp(200);
         if (
@@ -41,4 +41,10 @@ $(function (){
         });
 
     });
+
+    const heart = $('#heart');
+        heart.on('click', function() {
+        heart.;
+    });
+
 });

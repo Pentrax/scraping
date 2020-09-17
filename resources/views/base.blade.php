@@ -73,18 +73,18 @@
             <div class="sidebar-menu">
                 <ul>
                     <li class="header-menu">
-                        <span>General</span>
+                        <span>Filtros</span>
                     </li>
                     <li class="sidebar-dropdown">
                         <a href="#">
                             <i class="fa fa-search"  aria-hidden="true"></i>
-                            <span>Filtros</span>
+                            <span>Empresas</span>
 {{--                            <span class="badge badge-pill badge-warning">New</span>--}}
                         </a>
                         <div class="sidebar-submenu">
                             <ul>
                                 <li>
-                                    <a href="{{route("fravega",["search"=>$search , "empresa"=> "Fravega"])}}" id="fravega-filter">Fravega
+                                    <a href="{{route("filter",["search"=>$search , "empresa"=> "Fravega"])}}" id="fravega-filter">Fravega
 {{--                                        <span class="badge badge-pill badge-success">Pro</span>--}}
                                     </a>
                                 </li>
@@ -209,23 +209,23 @@
             <!-- sidebar-menu  -->
         </div>
         <!-- sidebar-content  -->
-        <div class="sidebar-footer">
-            <a href="#">
-                <i class="fa fa-bell"></i>
-                <span class="badge badge-pill badge-warning notification">3</span>
-            </a>
-            <a href="#">
-                <i class="fa fa-envelope"></i>
-                <span class="badge badge-pill badge-success notification">7</span>
-            </a>
-            <a href="#">
-                <i class="fa fa-cog"></i>
-                <span class="badge-sonar"></span>
-            </a>
-            <a href="#">
-                <i class="fa fa-power-off"></i>
-            </a>
-        </div>
+{{--        <div class="sidebar-footer">--}}
+{{--            <a href="#">--}}
+{{--                <i class="fa fa-bell"></i>--}}
+{{--                <span class="badge badge-pill badge-warning notification">3</span>--}}
+{{--            </a>--}}
+{{--            <a href="#">--}}
+{{--                <i class="fa fa-envelope"></i>--}}
+{{--                <span class="badge badge-pill badge-success notification">7</span>--}}
+{{--            </a>--}}
+{{--            <a href="#">--}}
+{{--                <i class="fa fa-cog"></i>--}}
+{{--                <span class="badge-sonar"></span>--}}
+{{--            </a>--}}
+{{--            <a href="#">--}}
+{{--                <i class="fa fa-power-off"></i>--}}
+{{--            </a>--}}
+{{--        </div>--}}
     </nav>
 
     <main class="page-content">
@@ -238,6 +238,22 @@
                     {!!  Form::text('search', $search,['class' => 'form-control','style' => 'width:80%','placeholder'=> 'encontra lo que buscas ...',"id"=> "text-search"]); !!}
                     {!!  Form::submit('Busca',['class'=> 'btn btn-outline-success my-2 my-sm-0',"style"=>'margin-left: 5px']) !!}
                 </div>
+                <div class="form-group">
+                    <span class="badge badge-primary">Selecciona una categoria</span>
+                </div>
+
+                    <div class="form-check-inline">
+
+                        {!! Form::radio('tecno','1',false,['class' => 'form-check-input']) !!}
+                        {!! Form::label('checkbox', 'Técnologia',['class'=>'form-check-label']) !!}
+
+                    </div>
+                    <div class="form-check-inline">
+                        {!! Form::radio('indumentaria','2',false,['class' => 'form-check-input']) !!}
+                        {!! Form::label('checkbox', 'Indumentaria',['class'=>'form-check-label']) !!}
+                    </div>
+
+
                 {!! Form::close() !!}
                 </div>
             </div>

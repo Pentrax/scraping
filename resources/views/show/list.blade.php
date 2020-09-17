@@ -19,7 +19,19 @@
                     <div class="card hvr-underline-from-center " id="{{$item->empresa}}" style="width: 18rem;height: 97%">
                         <div class="card-body">
                             @if($item->empresa == "Fravega")
-                            <div style="width: 48%"> {!! $item->brand !!} </div>
+                            <div style="width: 48%">
+                                {!! $item->brand !!} <i class="fa fa-heart"  id="heart" style="
+
+display: inline;
+position: absolute;
+right: 0;
+padding-right: 10px;
+background-color: transparent;
+font-size: 20px;
+color: gray;
+"></i>
+                            </div>
+
                             @else
                                 <div style="background-color: red;    width: 62%;
                                     border-radius: 12px;

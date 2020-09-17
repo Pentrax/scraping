@@ -58,6 +58,10 @@ class DefaultController extends Controller
         $search = $request->get("search");
         $empresa = "Fravega";
 
+        if (is_null($search) or empty($search)){
+            return view('base',compact("search"));
+        }
+
         $result = DB::table("Busquedas")
             ->where("busqueda",$search)
             ->where("empresa",$empresa)
