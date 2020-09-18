@@ -17,10 +17,10 @@ class ScrapingFactory
 
     }
 
-    public function scraping($parametrs){
+    public function scraping($parametrs,$categoria){
 
 
-            $this->garbarino->search($parametrs);
+            $this->garbarino->search($parametrs,$categoria);
             $this->fravega->search($parametrs);
 
         return $this->getBusqueda($parametrs);

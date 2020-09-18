@@ -100,23 +100,25 @@ class ScrapingFrav extends BaseScraping
                 $src = $node->filter('img')->attr('src');
                 $href = "https://www.fravega.com".$node->filter('a')->attr('href');
                 $div_price = $node->filter(".PiecePricing__PiecePriceWrapper-acjwpt-0");
-                $price = $div_price->filter("span");
+                $first_price = $div_price->filter("span")->text();
+                $price = $div_price->filter("span.SalePrice-sc-17gadvb-0");
                 $price = str_replace("$","",$price->text());
                 $price = trim($price);
                 $price = str_replace(".","",$price);
 
                 $title = $node->filter(".PieceTitle-sc-1eg7yvt-0")->text();
-                $contenido = preg_replace('/\W\w+\s*(\W*)$/', '$1',  $node->text());
-                $contenido = str_replace("Rectangle","",$contenido);
+                $contenido = $node->filter(".PieceTitle-sc-1eg7yvt-0")->text();
+
 
                 /** VER EL TEMA DEL PRECIO DEL PRODUCTO Y EL DESCUENTO */
                 /** AGREGAR UNA TABLA NUEVA ESTADISTICAS */
-                dd($contenido);
+                //dd($node->html());
 //                  dd($node->text(),$href,$src,$div_item->html(),$price->html(),$title->html(),$node->html());
 
                 return [
                     'precio' =>intval($price),
-                    'contenido'=> preg_replace('/\W\w+\s*(\W*)$/', '$1',  $node->text()),
+                    //'contenido'=> preg_replace('/\W\w+\s*(\W*)$/', '$1',  $node->text()),
+                    'contenido' => $contenido,
                     "titulo" => $title,
                     'src' => $src,
                     'href' => $href,

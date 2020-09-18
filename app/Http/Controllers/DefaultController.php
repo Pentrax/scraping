@@ -26,27 +26,13 @@ class DefaultController extends Controller
             return view('base',compact("search"));
     }
 
-//    /**
-//     * The attributes that are mass assignable.
-//     *
-//     * @var array
-//     */
-//    public function paginate($items, $perPage = 5, $page = null, $options = [])
-//    {
-//        $page = $page ?: (Paginator::resolveCurrentPage() ?: 1);
-//
-//        $items = $items instanceof Collection ? $items : Collection::make($items);
-//
-//        return new LengthAwarePaginator($items->forPage($page, $perPage), $items->count(), $perPage, $page, $options);
-//    }
-
 
     public function search(Request $request){
 
         $search = $request->input("search");
-
+        $categoria = $request->radio;
         $scraping = new ScrapingFactory();
-        $result = $scraping->scraping($search);
+        $result = $scraping->scraping($search,$categoria);
 
 
         return view('show.list', compact('result',"search"))->with($search);
@@ -56,7 +42,8 @@ class DefaultController extends Controller
     public function filter(Request  $request){
 
         $search = $request->get("search");
-        $empresa = "Fravega";
+        $empresa = $request->get("empresa");
+
 
         if (is_null($search) or empty($search)){
             return view('base',compact("search"));

@@ -16,7 +16,9 @@ class Busquedas extends Model
         'href',
         'brand',
         'empresa',
-        'busqueda'
+        'busqueda',
+        'categoria',
+        'marca'
     ];
 
     public function userId(){

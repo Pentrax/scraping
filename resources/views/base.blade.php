@@ -89,7 +89,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">Grabarino</a>
+                                    <a href="{{route("filter",["search"=>$search , "empresa"=> "Garbarino"])}}">Grabarino</a>
                                 </li>
                                 <li>
                                     <a href="#">Dashboard 3</a>
@@ -244,13 +244,17 @@
 
                     <div class="form-check-inline">
 
-                        {!! Form::radio('tecno','1',false,['class' => 'form-check-input']) !!}
+                        {!! Form::radio('radio','tecnologia',false,['class' => 'form-check-input']) !!}
                         {!! Form::label('checkbox', 'Técnologia',['class'=>'form-check-label']) !!}
 
                     </div>
                     <div class="form-check-inline">
-                        {!! Form::radio('indumentaria','2',false,['class' => 'form-check-input']) !!}
+                        {!! Form::radio('radio','indumentaria',false,['class' => 'form-check-input']) !!}
                         {!! Form::label('checkbox', 'Indumentaria',['class'=>'form-check-label']) !!}
+                    </div>
+                    <div class="form-check-inline">
+                        {!! Form::radio('radio','accesorios',false,['class' => 'form-check-input']) !!}
+                        {!! Form::label('checkbox', 'Accesorios',['class'=>'form-check-label']) !!}
                     </div>
 
 

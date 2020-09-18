@@ -16,7 +16,7 @@ const EMPRESA = "Garbarino";
 class ScrapingGarb extends BaseScraping
 {
 
-    public function search($parameters){
+    public function search($parameters,$categoria){
 
         $parametros_sin_formatear = strtolower($parameters);
         $busqueda = $this->getBusquedaReciente(strtolower($parameters));
@@ -43,7 +43,7 @@ class ScrapingGarb extends BaseScraping
 
         $pages = $this->getCantidadDePaginas($crawler);
 
-         $this->getContenido($pages,$parameters,$parametros_sin_formatear);
+         $this->getContenido($pages,$parameters,$parametros_sin_formatear,$categoria);
 
         return $this->getBusquedaReciente($parameters);
     }
@@ -80,7 +80,7 @@ class ScrapingGarb extends BaseScraping
     }
 
 
-    private function getContenido($pages,$parameters,$parametros_sin_formatear){
+    private function getContenido($pages,$parameters,$parametros_sin_formatear,$categoria){
 
         $data = [];
 
@@ -96,32 +96,35 @@ class ScrapingGarb extends BaseScraping
                 $price = $node->filter(".value-item");
                 $price = str_replace("$","",$price->text());
                 $price = str_replace(".","",$price);
-
+                $contenido = $node->filter(".itemBox--title")->text();
                 $title = $node->filter(".itemBox--title");
-
-                //  dd($node->text(),$href,$src,$div_item->html(),$price->html(),$title->html(),$node->html());
+                $marca = $node->filterXpath("//meta[@itemprop='brand']")->extract(array('content'));
+                $marca = $marca[0];
+                //dd($node->html(),$node->filterXpath("//meta[@itemprop='brand']")->extract(array('content')));
+                 // dd($node->html(),$href,$src,$div_item->html(),$price->html(),$title->html(),$node->html());
 
                 return [
-                    'precio' =>intval($price),
-                    'contenido'=> preg_replace('/\W\w+\s*(\W*)$/', '$1',  $node->text()),
-                    "titulo" => $title->text(),
-                    'src' => $src,
-                    'href' => $href,
-                    'brand' => '//dj4i04i24axgu.cloudfront.net/normi/statics/0.2.120/garbarino/images/logo-garbarino.svg',
-                    'empresa' => EMPRESA
+                    'precio'    =>intval($price),
+                    'contenido' => $contenido,
+                    "titulo"    => $title->text(),
+                    'src'       => $src,
+                    'href'      => $href,
+                    'brand'     => '//dj4i04i24axgu.cloudfront.net/normi/statics/0.2.120/garbarino/images/logo-garbarino.svg',
+                    'empresa'   => EMPRESA,
+                    'marca'     => $marca
                 ];
             });
         }
 
 
 
-       $this->saveBusqueda($data,$parametros_sin_formatear);
+       $this->saveBusqueda($data,$parametros_sin_formatear,$categoria);
 
         return true;
     }
 
 
-    public function saveBusqueda($data,$parameters){
+    public function saveBusqueda($data,$parameters,$categoria){
 
         foreach ($data as $info){
 
@@ -138,6 +141,8 @@ class ScrapingGarb extends BaseScraping
                 $busqueda->empresa = $item["empresa"];
                 $busqueda->busqueda = strtolower($parameters);
                 $busqueda->cantidad_busquedas = 1;
+                $busqueda->categoria = $categoria;
+                $busqueda->marca = $item["marca"];
 
                 $busqueda->save();
             }
