@@ -106,40 +106,36 @@ class ScrapingMercado extends BaseScraping
         $data = [];
          $desde = 1;
 
-        for ($i=0;$i <= $pages;$i++){
-            //$uri = "https://www.garbarino.com/q/{$parameters}/srch?page={$i}&q";
+        for ($i=0;$i <= 2;$i++){
             $uri = "https://listado.mercadolibre.com.ar/{$parameters}_Desde_{$desde}";
             $desde = $desde + 50;
 
             $crawler = $this->goutteClient->request('GET',$uri);
 
-            $data[$i] = $crawler->filter('.ui-search-layout__item')->each(function (Crawler $node) {
+                $data[$i] = $crawler->filter('.ui-search-layout__item')->each(function (Crawler $node) {
 
-                $div_item = $node->filter('.ui-search-result__image');
+                        $div_item = $node->filter('.ui-search-result__image');
 
-                $src = $node->filter('.slick-slide slick-active');
-                dd($src->html());
-                $href = $div_item->filter("a")->attr("href");
-                $price = $node->filter(".value-item");
-                $price = str_replace("$","",$price->text());
-                $price = str_replace(".","",$price);
-                $contenido = $node->filter(".itemBox--title")->text();
-                $title = $node->filter(".itemBox--title");
-                $marca = $node->filterXpath("//meta[@itemprop='brand']")->extract(array('content'));
-                $marca = $marca[0];
-                //dd($node->html(),$node->filterXpath("//meta[@itemprop='brand']")->extract(array('content')));
-                 // dd($node->html(),$href,$src,$div_item->html(),$price->html(),$title->html(),$node->html());
+                        $src = $node->filter('.slick-slide');
+                        $src = $src->filter("img")->attr("data-src");
+                        $href = $div_item->filter("a")->attr("href");
+                        $price = $node->filter(".price-tag-fraction")->html();
+                        $price = str_replace(".","",$price);
 
-                return [
-                    'precio'    =>intval($price),
-                    'contenido' => $contenido,
-                    "titulo"    => $title->text(),
-                    'src'       => $src,
-                    'href'      => $href,
-                    'brand'     => '//dj4i04i24axgu.cloudfront.net/normi/statics/0.2.120/garbarino/images/logo-garbarino.svg',
-                    'empresa'   => EMPRESA,
-                    'marca'     => $marca
-                ];
+                        $contenido = $node->filter(".ui-search-item__title")->text();
+                        $title = $node->filter(".ui-search-item__title")->text();
+                        $marca = null;
+
+                        return [
+                            'precio'    =>intval($price),
+                            'contenido' => $contenido,
+                            "titulo"    => $title,
+                            'src'       => $src,
+                            'href'      => $href,
+                            'brand'     => 'https://http2.mlstatic.com/frontend-assets/ui-navigation/5.10.2/mercadolibre/logo__large_plus.png',
+                            'empresa'   => "Mercado Libre",
+                            'marca'     => $marca
+                        ];
             });
 
         }
