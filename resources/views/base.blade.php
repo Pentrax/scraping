@@ -28,7 +28,10 @@
 <body>
 
 
+
 @include("partials.nav")
+
+
 
     <main class="page-content">
         <div class="container-fluid">

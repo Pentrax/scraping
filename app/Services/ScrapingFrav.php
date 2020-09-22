@@ -78,8 +78,12 @@ class ScrapingFrav extends BaseScraping
 
                     return $offset;
                 });
+         if (isset($elements[0])){
 
-        $pages = (int) ceil(intval($elements[0]) / 15);
+             $pages = (int) ceil(intval($elements[0]) / 15);
+         }else{
+             $pages = 0;
+         }
 
          return $pages;
 
@@ -91,7 +95,7 @@ class ScrapingFrav extends BaseScraping
         $data = [];
 
         for ($i=1;$i <= $pages;$i++){
-            //$uri = "https://www.garbarino.com/q/{$parameters}/srch?page={$i}&q";
+
             $uri = "https://www.fravega.com/l/?keyword={$parameters}&page={$i}";
             $crawler = $this->goutteClient->request('GET',$uri);
             $data[$i] = $crawler->filter('.ProductCard__Card-sc-1w5guu7-2')->each(function (Crawler $node) {
