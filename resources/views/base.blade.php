@@ -28,215 +28,26 @@
 <body>
 
 
-<div class="page-wrapper chiller-theme toggled">
-    <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
-        <i class="fas fa-bars"></i>
-    </a>
-    <nav id="sidebar" class="sidebar-wrapper">
-        <div class="sidebar-content">
-            <div class="sidebar-brand">
-                <a href="{{url("/")}}">Scraping</a>
-                <div id="close-sidebar">
-                    <i class="fas fa-times"></i>
-                </div>
-            </div>
-{{--            <div class="sidebar-header">--}}
-{{--                <div class="user-pic">--}}
-{{--                    <img class="img-responsive img-rounded" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"--}}
-{{--                         alt="User picture">--}}
-{{--                </div>--}}
-{{--                <div class="user-info">--}}
-{{--          <span class="user-name">Jhon--}}
-{{--            <strong>Smith</strong>--}}
-{{--          </span>--}}
-{{--                    <span class="user-role">Administrator</span>--}}
-{{--                    <span class="user-status">--}}
-{{--            <i class="fa fa-circle"></i>--}}
-{{--            <span>Online</span>--}}
-{{--          </span>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-            <!-- sidebar-header  -->
-{{--            <div class="sidebar-search">--}}
-{{--                <div>--}}
-{{--                    <div class="input-group">--}}
-{{--                        <input type="text" class="form-control search-menu" id="inpunt-search" placeholder="filtrar...">--}}
-{{--                        <div class="input-group-append">--}}
-{{--              <span class="input-group-text">--}}
-{{--                <a href="#" id="search-filter-btn" class=" btn-xs"><i class="fa fa-search"  aria-hidden="true"></i></a>--}}
-{{--              </span>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-            <!-- sidebar-search  -->
-            <div class="sidebar-menu">
-                <ul>
-                    <li class="header-menu">
-                        <span>Filtros</span>
-                    </li>
-                    <li class="sidebar-dropdown">
-                        <a href="#">
-                            <i class="fa fa-search"  aria-hidden="true"></i>
-                            <span>Empresas</span>
-{{--                            <span class="badge badge-pill badge-warning">New</span>--}}
-                        </a>
-                        <div class="sidebar-submenu">
-                            <ul>
-                                <li>
-                                    <a href="{{route("filter",["search"=>$search , "empresa"=> "Fravega"])}}" id="fravega-filter">Fravega
-{{--                                        <span class="badge badge-pill badge-success">Pro</span>--}}
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{route("filter",["search"=>$search , "empresa"=> "Garbarino"])}}">Grabarino</a>
-                                </li>
-{{--                                <li>--}}
-{{--                                    <a href="#">Dashboard 3</a>--}}
-{{--                                </li>--}}
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="sidebar-dropdown">
-                        <a href="#">
-                            <i class="fa fa-shopping-cart"></i>
-                            <span>E-commerce</span>
-                            <span class="badge badge-pill badge-danger">3</span>
-                        </a>
-                        <div class="sidebar-submenu">
-                            <ul>
-                                <li>
-                                    <a href="#">Products
 
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">Orders</a>
-                                </li>
-                                <li>
-                                    <a href="#">Credit cart</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="sidebar-dropdown">
-                        <a href="#">
-                            <i class="far fa-gem"></i>
-                            <span>Components</span>
-                        </a>
-                        <div class="sidebar-submenu">
-                            <ul>
-                                <li>
-                                    <a href="#">General</a>
-                                </li>
-                                <li>
-                                    <a href="#">Panels</a>
-                                </li>
-                                <li>
-                                    <a href="#">Tables</a>
-                                </li>
-                                <li>
-                                    <a href="#">Icons</a>
-                                </li>
-                                <li>
-                                    <a href="#">Forms</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="sidebar-dropdown">
-                        <a href="#">
-                            <i class="fa fa-chart-line"></i>
-                            <span>Charts</span>
-                        </a>
-                        <div class="sidebar-submenu">
-                            <ul>
-                                <li>
-                                    <a href="#">Pie chart</a>
-                                </li>
-                                <li>
-                                    <a href="#">Line chart</a>
-                                </li>
-                                <li>
-                                    <a href="#">Bar chart</a>
-                                </li>
-                                <li>
-                                    <a href="#">Histogram</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="sidebar-dropdown">
-                        <a href="#">
-                            <i class="fa fa-globe"></i>
-                            <span>Maps</span>
-                        </a>
-                        <div class="sidebar-submenu">
-                            <ul>
-                                <li>
-                                    <a href="#">Google maps</a>
-                                </li>
-                                <li>
-                                    <a href="#">Open street map</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="header-menu">
-                        <span>Extra</span>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fa fa-book"></i>
-                            <span>Documentation</span>
-                            <span class="badge badge-pill badge-primary">Beta</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fa fa-calendar"></i>
-                            <span>Calendar</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fa fa-folder"></i>
-                            <span>Examples</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <!-- sidebar-menu  -->
-        </div>
-        <!-- sidebar-content  -->
-{{--        <div class="sidebar-footer">--}}
-{{--            <a href="#">--}}
-{{--                <i class="fa fa-bell"></i>--}}
-{{--                <span class="badge badge-pill badge-warning notification">3</span>--}}
-{{--            </a>--}}
-{{--            <a href="#">--}}
-{{--                <i class="fa fa-envelope"></i>--}}
-{{--                <span class="badge badge-pill badge-success notification">7</span>--}}
-{{--            </a>--}}
-{{--            <a href="#">--}}
-{{--                <i class="fa fa-cog"></i>--}}
-{{--                <span class="badge-sonar"></span>--}}
-{{--            </a>--}}
-{{--            <a href="#">--}}
-{{--                <i class="fa fa-power-off"></i>--}}
-{{--            </a>--}}
-{{--        </div>--}}
-    </nav>
+@include("partials.nav")
+
+
 
     <main class="page-content">
         <div class="container-fluid">
             <div class="row">
+                <div class="col-4 col-offset-md-2">
+
+                    <h1>Scraping</h1>
+                </div>
+            </div>
+            <div class="row">
                 <div class="form-group col-md-12">
-                {!! Form::open(['route' => 'search','method' => 'put','class'=> 'form-inline mx-2 my-auto d-inline w-100']) !!}
+                {!! Form::open(['route' => 'search','method' => 'get','class'=> 'form-inline mx-2 my-auto d-inline w-100','id'=> 'search-form']) !!}
                 {!!  Form::token() !!}
                 <div class="form-group  mb-2" style="padding-top: 15px">
-                    {!!  Form::text('search', $search,['class' => 'form-control','style' => 'width:80%','placeholder'=> 'encontra lo que buscas ...',"id"=> "text-search"]); !!}
-                    {!!  Form::submit('Busca',['class'=> 'btn btn-outline-success my-2 my-sm-0',"style"=>'margin-left: 5px']) !!}
+                    {!!  Form::text('search', $search,['class' => 'form-control','style' => 'width:80%','placeholder'=> 'encontra lo que buscas ...',"id"=> "text-search",'required']); !!}
+                    {!!  Form::submit('Busca',['class'=> 'btn btn-outline-success my-2 my-sm-0 ',"style"=>'margin-left: 5px','id'=> 'search-btn']) !!}
                 </div>
                 <div class="form-group">
                     <span class="badge badge-primary">Selecciona una categoria</span>
@@ -244,16 +55,16 @@
 
                     <div class="form-check-inline">
 
-                        {!! Form::radio('radio','tecnologia',false,['class' => 'form-check-input']) !!}
+                        {!! Form::radio('radio','tecnologia',false,['class' => 'form-check-input','required']) !!}
                         {!! Form::label('checkbox', 'Técnologia',['class'=>'form-check-label']) !!}
 
                     </div>
                     <div class="form-check-inline">
-                        {!! Form::radio('radio','indumentaria',false,['class' => 'form-check-input']) !!}
+                        {!! Form::radio('radio','indumentaria',false,['class' => 'form-check-input','required']) !!}
                         {!! Form::label('checkbox', 'Indumentaria',['class'=>'form-check-label']) !!}
                     </div>
                     <div class="form-check-inline">
-                        {!! Form::radio('radio','accesorios',false,['class' => 'form-check-input']) !!}
+                        {!! Form::radio('radio','accesorios',false,['class' => 'form-check-input','required']) !!}
                         {!! Form::label('checkbox', 'Accesorios',['class'=>'form-check-label']) !!}
                     </div>
 
@@ -261,6 +72,10 @@
                 {!! Form::close() !!}
                 </div>
             </div>
+            <div id="spinner">
+
+            </div>
+
             @yield('main')
         </div>
     </main>

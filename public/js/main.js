@@ -42,9 +42,21 @@ $(function (){
 
     });
 
-    // const heart = $('#heart');
-    //     heart.on('click', function() {
-    //     heart.;
-    // });
+    // $("#search-form").submit(function(e) {
+    //   //  e.preventDefault();
+    //
+    //     var $search = $("#spinner")
+    //     $search.html('<div class="spinner-border text-primary" role="status">\n' +
+    //         '                <span class="sr-only">Loading...</span>\n' +
+    //         '            </div>');
+    //
+    //     setTimeout(function() {
+    //         // for (var i = 0; i < 50000; i++){
+    //         //     console.log(i)
+    //         // }
+    //
+    //         $search.empty();
+    //     }, 50);
+    // })
 
 });
