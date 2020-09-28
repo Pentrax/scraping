@@ -23,6 +23,7 @@ class DefaultController extends Controller
      */
     function index(Request $request){
             $search = "";
+//            dd($search);
             return view('base',compact("search"));
     }
 

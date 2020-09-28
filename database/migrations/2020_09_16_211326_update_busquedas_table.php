@@ -13,20 +13,21 @@ class UpdateBusquedasTable extends Migration
      */
     public function up()
     {
-        Schema::create('busquedas', function (Blueprint $table) {
-            $table->increments("id");
-            $table->float("precio");
-            $table->string("contenido");
-            $table->string("titulo");
-            $table->string("src");
-            $table->string("href");
-            $table->string("brand");
-            $table->string("empresa");
-            $table->string("busqueda");
-            $table->integer("cantidad_busquedas");
-            $table->foreign("user_id");
-            $table->timestamps();
-        });
+        $this->down();
+//        Schema::create('busquedas', function (Blueprint $table) {
+//            $table->increments("id");
+//            $table->float("precio");
+//            $table->string("contenido");
+//            $table->string("titulo");
+//            $table->string("src");
+//            $table->string("href");
+//            $table->string("brand");
+//            $table->string("empresa");
+//            $table->string("busqueda");
+//            $table->integer("cantidad_busquedas");
+//            $table->foreign("user_id");
+//            $table->timestamps();
+//        });
     }
 
     /**

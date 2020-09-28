@@ -1,4 +1,6 @@
 
+import flex from "flexible-rating"
+
 $(function (){
 
     $(".sidebar-dropdown > a").click(function() {

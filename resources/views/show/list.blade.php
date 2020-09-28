@@ -16,7 +16,7 @@
 
         @foreach($result->items() as $item)
             <div class="col">
-                    <div class="card hvr-underline-from-center " id="{{$item->empresa}}" style="width: 18rem;height: 97%">
+                    <div class="card hvr-underline-from-center "  style="width: 18rem;height: 97%">
                         <div class="card-body">
                             @if($item->empresa == "Fravega")
                             <div style="width: 48%">
@@ -41,14 +41,17 @@ color: gray;
                             <h5 class="card-title">{{$item->titulo}}</h5>
                             <h6 class="card-subtitle mb-2 text-muted"><span class="badge badge-pill badge-success">${{$item->precio}}</span></h6>
                             <img src="{{$item->src}}" width="115" itemprop="image" >
-                            <p class="card-text">{{$item->contenido}}</p>
+                            <p class="card-text descripcion-mb30">{{$item->contenido}}</p>
+                            <div class="row contenedor-botones" >
+                                <div class="col">
+                                    <a href="{{$item->href}}"  class="card-link btn  btn-outline-primary" style="width: 100%" target="_blank">Ver</a>
+                                </div>
+                                <div class="col">
+                                    <a href="{{$item->href}}" class="card-link btn  btn-outline-info" data-toggle="modal" data-target="#exampleModal"  style="width: 100%" target="_blank">Comentar</a>
+                                </div>
+                            </div>
 
-                            <a href="{{$item->href}}" style="position: absolute;
-width: 90%;
-left: 0;
-bottom: 0;
-margin-bottom: 10px;
-margin-left: 15px" class="card-link btn btn-primary" style="width: 100%" target="_blank">Ver</a>
+
                         </div>
                     </div>
                 <br><br>
@@ -70,3 +73,4 @@ margin-left: 15px" class="card-link btn btn-primary" style="width: 100%" target=
 
 @endsection
 
+@include("modal.modal")

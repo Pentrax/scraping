@@ -13,8 +13,9 @@ class CreateBusquedasTable extends Migration
      */
     public function up()
     {
+        $this->down();
         Schema::create('busquedas', function (Blueprint $table) {
-            $table->id();
+            $table->increments("id");
             $table->float("precio");
             $table->string("contenido");
             $table->string("titulo");
@@ -24,6 +25,8 @@ class CreateBusquedasTable extends Migration
             $table->string("empresa");
             $table->string("busqueda");
             $table->integer("cantidad_busquedas");
+            $table->integer('user_id')->unsigned();
+           // $table->foreign("user_id")->references('id')->on('users');
             $table->timestamps();
         });
     }

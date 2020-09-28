@@ -55,130 +55,131 @@
                             <ul>
                                 <li>
                                     <a href="{{route("filter",["search"=>$search , "empresa"=> "Fravega"])}}" id="fravega-filter">
-                                        <img width="55%" src="//d1.awsstatic.com/case-studies/LATAM/logo-fravega.d25cf123da4aa0a179e74587d16f38f45d2113a2.png" alt="fravega">
+                                        Fravega
+
                                         {{--                                        <span class="badge badge-pill badge-success">Pro</span>--}}
                                     </a>
                                 </li>
                                 <li>
                                     <a href="{{route("filter",["search"=>$search , "empresa"=> "Garbarino"])}}">
-                                        <img style="width:55% ; background-color: red;border-radius: 15px; "  src="//dj4i04i24axgu.cloudfront.net/normi/statics/0.2.120/garbarino/images/logo-garbarino.svg" alt="garbarino">
+                                        Garbarino
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
-                                        <img width="55%" src="https://http2.mlstatic.com/frontend-assets/ui-navigation/5.10.2/mercadolibre/logo__large_plus.png" alt="">
+                                    <a href="{{route("filter",["search"=>$search , "empresa"=> "Mercado Libre"])}}">
+                                        Mercado Libre
                                     </a>
                                 </li>
                             </ul>
                         </div>
                     </li>
-                    <li class="sidebar-dropdown">
-                        <a href="#">
-                            <i class="fa fa-shopping-cart"></i>
-                            <span>E-commerce</span>
-                            <span class="badge badge-pill badge-danger">3</span>
-                        </a>
-                        <div class="sidebar-submenu">
-                            <ul>
-                                <li>
-                                    <a href="#">Products
+{{--                    <li class="sidebar-dropdown">--}}
+{{--                        <a href="#">--}}
+{{--                            <i class="fa fa-shopping-cart"></i>--}}
+{{--                            <span>E-commerce</span>--}}
+{{--                            <span class="badge badge-pill badge-danger">3</span>--}}
+{{--                        </a>--}}
+{{--                        <div class="sidebar-submenu">--}}
+{{--                            <ul>--}}
+{{--                                <li>--}}
+{{--                                    <a href="#">Products--}}
 
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">Orders</a>
-                                </li>
-                                <li>
-                                    <a href="#">Credit cart</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="sidebar-dropdown">
-                        <a href="#">
-                            <i class="far fa-gem"></i>
-                            <span>Components</span>
-                        </a>
-                        <div class="sidebar-submenu">
-                            <ul>
-                                <li>
-                                    <a href="#">General</a>
-                                </li>
-                                <li>
-                                    <a href="#">Panels</a>
-                                </li>
-                                <li>
-                                    <a href="#">Tables</a>
-                                </li>
-                                <li>
-                                    <a href="#">Icons</a>
-                                </li>
-                                <li>
-                                    <a href="#">Forms</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="sidebar-dropdown">
-                        <a href="#">
-                            <i class="fa fa-chart-line"></i>
-                            <span>Charts</span>
-                        </a>
-                        <div class="sidebar-submenu">
-                            <ul>
-                                <li>
-                                    <a href="#">Pie chart</a>
-                                </li>
-                                <li>
-                                    <a href="#">Line chart</a>
-                                </li>
-                                <li>
-                                    <a href="#">Bar chart</a>
-                                </li>
-                                <li>
-                                    <a href="#">Histogram</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="sidebar-dropdown">
-                        <a href="#">
-                            <i class="fa fa-globe"></i>
-                            <span>Maps</span>
-                        </a>
-                        <div class="sidebar-submenu">
-                            <ul>
-                                <li>
-                                    <a href="#">Google maps</a>
-                                </li>
-                                <li>
-                                    <a href="#">Open street map</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="header-menu">
-                        <span>Extra</span>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fa fa-book"></i>
-                            <span>Documentation</span>
-                            <span class="badge badge-pill badge-primary">Beta</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fa fa-calendar"></i>
-                            <span>Calendar</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fa fa-folder"></i>
-                            <span>Examples</span>
-                        </a>
-                    </li>
+{{--                                    </a>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <a href="#">Orders</a>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <a href="#">Credit cart</a>--}}
+{{--                                </li>--}}
+{{--                            </ul>--}}
+{{--                        </div>--}}
+{{--                    </li>--}}
+{{--                    <li class="sidebar-dropdown">--}}
+{{--                        <a href="#">--}}
+{{--                            <i class="far fa-gem"></i>--}}
+{{--                            <span>Components</span>--}}
+{{--                        </a>--}}
+{{--                        <div class="sidebar-submenu">--}}
+{{--                            <ul>--}}
+{{--                                <li>--}}
+{{--                                    <a href="#">General</a>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <a href="#">Panels</a>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <a href="#">Tables</a>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <a href="#">Icons</a>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <a href="#">Forms</a>--}}
+{{--                                </li>--}}
+{{--                            </ul>--}}
+{{--                        </div>--}}
+{{--                    </li>--}}
+{{--                    <li class="sidebar-dropdown">--}}
+{{--                        <a href="#">--}}
+{{--                            <i class="fa fa-chart-line"></i>--}}
+{{--                            <span>Charts</span>--}}
+{{--                        </a>--}}
+{{--                        <div class="sidebar-submenu">--}}
+{{--                            <ul>--}}
+{{--                                <li>--}}
+{{--                                    <a href="#">Pie chart</a>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <a href="#">Line chart</a>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <a href="#">Bar chart</a>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <a href="#">Histogram</a>--}}
+{{--                                </li>--}}
+{{--                            </ul>--}}
+{{--                        </div>--}}
+{{--                    </li>--}}
+{{--                    <li class="sidebar-dropdown">--}}
+{{--                        <a href="#">--}}
+{{--                            <i class="fa fa-globe"></i>--}}
+{{--                            <span>Maps</span>--}}
+{{--                        </a>--}}
+{{--                        <div class="sidebar-submenu">--}}
+{{--                            <ul>--}}
+{{--                                <li>--}}
+{{--                                    <a href="#">Google maps</a>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <a href="#">Open street map</a>--}}
+{{--                                </li>--}}
+{{--                            </ul>--}}
+{{--                        </div>--}}
+{{--                    </li>--}}
+{{--                    <li class="header-menu">--}}
+{{--                        <span>Extra</span>--}}
+{{--                    </li>--}}
+{{--                    <li>--}}
+{{--                        <a href="#">--}}
+{{--                            <i class="fa fa-book"></i>--}}
+{{--                            <span>Documentation</span>--}}
+{{--                            <span class="badge badge-pill badge-primary">Beta</span>--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
+{{--                    <li>--}}
+{{--                        <a href="#">--}}
+{{--                            <i class="fa fa-calendar"></i>--}}
+{{--                            <span>Calendar</span>--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
+{{--                    <li>--}}
+{{--                        <a href="#">--}}
+{{--                            <i class="fa fa-folder"></i>--}}
+{{--                            <span>Examples</span>--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
                 </ul>
             </div>
             <!-- sidebar-menu  -->

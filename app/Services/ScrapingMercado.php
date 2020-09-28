@@ -170,7 +170,7 @@ class ScrapingMercado extends BaseScraping
 
         $busqueda = DB::table("Busquedas")
             ->where("busqueda",$parameters)
-            ->where("empresa","Garbarino")
+            ->where("empresa","Mercado Libre")
             ->orderBy("precio","asc")
             ->paginate(5)
             ->appends ( array (

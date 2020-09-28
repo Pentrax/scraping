@@ -542,3 +542,16 @@ div#Garbarino{
     padding-left: 20px;
     margin-bottom: 15px;
 }
+
+.contenedor-botones{
+    position: absolute;
+    width: 90%;
+    left: 0;
+    bottom: 0;
+    margin-bottom: 10px;
+    margin-left: 15px;
+}
+
+.descripcion-mb30{
+    margin-bottom: 30px;
+}

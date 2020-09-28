@@ -13,12 +13,13 @@ class UpdateEmpresasTable extends Migration
      */
     public function up()
     {
-        Schema::create('empresas', function (Blueprint $table) {
-            $table->increments("id");
-            $table->string("empresa");
-            $table->string("rubro");
-            $table->timestamps();
-        });
+//        $this->down();
+//        Schema::create('empresas', function (Blueprint $table) {
+//            $table->increments("id");
+//            $table->string("empresa");
+//            $table->string("rubro");
+//            $table->timestamps();
+//        });
     }
 
     /**
