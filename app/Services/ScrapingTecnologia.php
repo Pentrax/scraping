@@ -21,8 +21,8 @@ class ScrapingTecnologia
     public function scraping($parametrs,$categoria){
 
             $this->mercado->search($parametrs,$categoria);
-//            $this->garbarino->search($parametrs,$categoria);
-//            $this->fravega->search($parametrs);
+            $this->garbarino->search($parametrs,$categoria);
+            $this->fravega->search($parametrs);
 
         return $this->getBusqueda($parametrs);
 
@@ -38,7 +38,7 @@ class ScrapingTecnologia
             ->appends ( array (
                 'search' => $parameters
             ) );
-        //dd($busqueda);
+
         return $busqueda;
     }
 

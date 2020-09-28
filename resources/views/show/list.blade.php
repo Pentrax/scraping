@@ -33,11 +33,7 @@ color: gray;
                             </div>
 
                             @else
-                                <div style="background-color: red;    width: 62%;
-                                    border-radius: 12px;
-                                    padding-left: 20px;
-                                    margin-bottom: 15px;
-                                ">
+                                <div id="{{$item->empresa}}">
                                 <img src="{{$item->brand}}" width="115" itemprop="image" >
                                 </div>
                             @endif

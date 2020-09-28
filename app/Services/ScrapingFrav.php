@@ -28,9 +28,9 @@ class ScrapingFrav extends BaseScraping
 
         $busqueda = $this->getBusquedaReciente(strtolower($parameters));
 
-//        if ($busqueda->count() > 0){
-//            return  true;
-//        }
+        if ($busqueda->count() > 0){
+            return  true;
+        }
       //  dd($busqueda);
 //        dd($busqueda->count());
 

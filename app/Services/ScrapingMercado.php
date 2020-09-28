@@ -20,25 +20,16 @@ class ScrapingMercado extends BaseScraping
     public function search($parameters,$categoria){
 
         $parametros_sin_formatear = strtolower($parameters);
-      //  $busqueda = $this->getBusquedaReciente(strtolower($parameters));
+        $busqueda = $this->getBusquedaReciente(strtolower($parameters));
 
-//        if ($busqueda->count() > 0){
-//            return  true;
-//        }
-
-
-
-//        foreach ($busqueda as $x){
-//           $x->cantidad_busquedas = $x->cantidad_busquedas +1;
-//
-//        }
-//        die();
-//        dd($busqueda);
+        if ($busqueda->count() > 0){
+            return  true;
+        }
 
 
         $pre = $this->formatPreParameters($parameters);
         $parameters = $this->formatParameters($parameters);
-      //  dd($parameters);
+
         $url = "https://listado.mercadolibre.com.ar/{$pre}#D[A:{$parameters}]";
 
         $crawler = $this->goutteClient->request('GET',$url);

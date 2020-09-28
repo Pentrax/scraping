@@ -535,3 +535,10 @@ body {
     color: blue;
 }
 
+div#Garbarino{
+    background-color: red;
+    width: 62%;
+    border-radius: 12px;
+    padding-left: 20px;
+    margin-bottom: 15px;
+}
