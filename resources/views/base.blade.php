@@ -10,7 +10,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-    <link rel="stylesheet" href="fontawesome-stars.css">
+
 
 <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
@@ -37,25 +37,25 @@
     <main class="page-content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-4 col-offset-md-2">
-
+                <div class="col-12 text-center">
                     <h1>Scraping</h1>
                 </div>
             </div>
+
             <div class="row">
                 <div class="form-group col-md-12">
 
                 {!! Form::open(['route' => 'search','method' => 'get','class'=> 'form-inline mx-2 my-auto d-inline w-100','id'=> 'search-form']) !!}
                 {!!  Form::token() !!}
                 <div class="form-group  mb-2" style="padding-top: 15px">
-                    <select id="example">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select>
-                    {!!  Form::text('search', $search,['class' => 'form-control','style' => 'width:80%','placeholder'=> 'encontra lo que buscas ...',"id"=> "text-search",'required']); !!}
+{{--                    <select id="example">--}}
+{{--                        <option value="1">1</option>--}}
+{{--                        <option value="2">2</option>--}}
+{{--                        <option value="3">3</option>--}}
+{{--                        <option value="4">4</option>--}}
+{{--                        <option value="5">5</option>--}}
+{{--                    </select>--}}
+                    {!!  Form::text('search', $data['search'],['class' => 'form-control','style' => 'width:80%','placeholder'=> 'encontra lo que buscas ...',"id"=> "text-search",'required']); !!}
                     {!!  Form::submit('Busca',['class'=> 'btn btn-outline-success my-2 my-sm-0 ',"style"=>'margin-left: 5px','id'=> 'search-btn']) !!}
                 </div>
                 <div class="form-group">
@@ -64,56 +64,49 @@
 
                     <div class="form-check-inline">
 
-                        {!! Form::radio('radio','tecnologia',false,['class' => 'form-check-input','required']) !!}
+                        {!! Form::radio('radio','tecnologia',false,['class' => 'form-check-input','required', 'id' => 'tecno']) !!}
                         {!! Form::label('checkbox', 'Técnologia',['class'=>'form-check-label']) !!}
 
                     </div>
                     <div class="form-check-inline">
-                        {!! Form::radio('radio','indumentaria',false,['class' => 'form-check-input','required']) !!}
+                        {!! Form::radio('radio','indumentaria',false,['class' => 'form-check-input','required','id' => 'indumentaria']) !!}
                         {!! Form::label('checkbox', 'Indumentaria',['class'=>'form-check-label']) !!}
                     </div>
                     <div class="form-check-inline">
-                        {!! Form::radio('radio','accesorios',false,['class' => 'form-check-input','required']) !!}
+                        {!! Form::radio('radio','accesorios',false,['class' => 'form-check-input','required','id' => 'accesorios']) !!}
                         {!! Form::label('checkbox', 'Accesorios',['class'=>'form-check-label']) !!}
                     </div>
 
 
                 {!! Form::close() !!}
                 </div>
-            </div>
-            <div id="spinner">
 
             </div>
+            @if(isset($data['filter']))
+
+                @include("partials.filter",[ 'data '=> $data ])
+
+            @endif
+
 
             @yield('main')
         </div>
     </main>
-{{--<div class="container main">--}}
 
-{{--    @yield('main')--}}
-{{--</div>--}}
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-{{--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>--}}
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
-{{--<script src="{{asset()}}" type="text/js"></script>--}}
 
-<script src="{{ asset('js/app.js')}}" type="text/js"></script>
-<script src="{{ asset('js/main.js')}}" ></script>
-<script src="{{ asset('js/filter.js')}}" ></script>
-{{--<script src="{{asset('node_modules/jquery-bar-rating/dist/jquery.barrating.min.js')}}"></script>--}}
-<script type="text/javascript">
-   // require("jquery-bar-rating");
-    $(function() {
-        $('#example').barrating({
-            theme: 'bootstrap-stars'
-        });
-    });
-</script>
+    <script src="{{ asset('js/app.js')}}" type="text/js"></script>
+    <script src="{{ asset('js/main.js')}}" ></script>
+    <script src="{{ asset('js/filter.js')}}" ></script>
+    <script src="{{ asset('js/modal.js')}}" ></script>
+
+    @yield('scripts')
 
 </body>
 </html>

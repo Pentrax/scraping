@@ -24,19 +24,21 @@ class ScrapingTecnologia
             $this->garbarino->search($parametrs,$categoria);
             $this->fravega->search($parametrs);
 
-        return $this->getBusqueda($parametrs);
+        return $this->getBusqueda($parametrs,$categoria);
 
     }
 
 
-    private function getBusqueda($parameters){
+    private function getBusqueda($parameters,$categoria){
 
         $busqueda = DB::table("Busquedas")
             ->where("busqueda",$parameters)
+            ->where("categoria",$categoria)
             ->orderBy("precio","asc")
             ->paginate(16)
             ->appends ( array (
-                'search' => $parameters
+                'search' => $parameters,
+                'categoria' => $categoria
             ) );
 
         return $busqueda;

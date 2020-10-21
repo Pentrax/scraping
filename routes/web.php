@@ -19,5 +19,11 @@ use App\Busquedas;
 Route::get('/', 'DefaultController@index')->name('home');
 Route::any('/search', 'DefaultController@search')->name('search');
 
-Route::any('/filter', 'DefaultController@filter')->name('filter');
+Route::any('/filter', 'FilterController@filter')->name('filter');
+
+Route::post('/ajax-request', 'AjaxController@store');
+
+Route::get('/comentarios','ComentariosController@ver')->name("ver");
+
+Route::any('/remov-filter', 'FilterController@removeFilter')->name('remove-filter');
 

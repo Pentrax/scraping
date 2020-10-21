@@ -10,6 +10,7 @@ use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\DB;
+use Symfony\Component\Console\Input\Input;
 
 class DefaultController extends Controller
 {
@@ -22,47 +23,40 @@ class DefaultController extends Controller
      *
      */
     function index(Request $request){
-            $search = "";
-//            dd($search);
-            return view('base',compact("search"));
+
+            $data['search'] = "";
+            $data = [
+                'search' => '',
+                'categoria' => ''
+            ];
+            return view('base',compact("data"));
     }
 
 
     public function search(Request $request){
+//        dd($request->all());
+        $request->session()->remove("emp");
 
         $search = $request->input("search");
         $categoria = $request->radio;
-        $scraping = new ScrapingFactory();
-        $result = $scraping->scraping($search,$categoria);
 
-
-        return view('show.list', compact('result',"search"))->with($search);
-
-    }
-
-    public function filter(Request  $request){
-
-        $search = $request->get("search");
-        $empresa = $request->get("empresa");
-
-
-        if (is_null($search) or empty($search)){
-            return view('base',compact("search"));
+        if (is_null($categoria)){
+            $req = $request->all();
+            $categoria = $req['categoria'];
         }
 
-        $result = DB::table("Busquedas")
-            ->where("busqueda",$search)
-            ->where("empresa",$empresa)
-            ->orderBy("precio","asc")
-            ->paginate(16)
-            ->appends ( array (
-                'search' => $search,
-                "empresa" => $empresa
-            ) );
-
-
-         return view('show.list', compact("result","search"));
+        $scraping = new ScrapingFactory();
+        $result = $scraping->scraping($search,$categoria);
+        $data = [
+            'categoria'=> $categoria,
+            'result' => $result,
+            'search' => $search
+        ];
+//        dd($data,$search);
+        return view('show.list', compact('data'));
 
     }
+
+
 
 }

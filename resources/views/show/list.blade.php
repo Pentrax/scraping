@@ -9,12 +9,11 @@
             </div>
         @endif
     </div>
-    <div>
 
-    </div>
     <div class="row">
+        <input type="hidden" id="select-categoria" name="cat" value="{{$data['categoria']}}">
 
-        @foreach($result->items() as $item)
+        @foreach($data['result']->items() as $item)
             <div class="col">
                     <div class="card hvr-underline-from-center "  style="width: 18rem;height: 97%">
                         <div class="card-body">
@@ -47,7 +46,7 @@ color: gray;
                                     <a href="{{$item->href}}"  class="card-link btn  btn-outline-primary" style="width: 100%" target="_blank">Ver</a>
                                 </div>
                                 <div class="col">
-                                    <a href="{{$item->href}}" class="card-link btn  btn-outline-info" data-toggle="modal" data-target="#exampleModal"  style="width: 100%" target="_blank">Comentar</a>
+                                    <a href="{{$item->href}}" class="card-link btn  btn-outline-info" data-toggle="modal" data-id="{{$item->id}}" data-titulo="{{$item->titulo}}" data-target="#comment"  style="width: 100%" target="_blank">Comentar</a>
                                 </div>
                             </div>
 
@@ -60,13 +59,11 @@ color: gray;
         @endforeach
 
     </div>
-
-
     </div>
 
 
     <div class="d-flex justify-content-center">
-        {!! $result->links() !!}
+        {!! $data['result']->links() !!}
     </div>
 
 
@@ -74,3 +71,10 @@ color: gray;
 @endsection
 
 @include("modal.modal")
+
+
+
+@section('scripts')
+    <script src="{{ asset('js/helper.js')}}" ></script>
+
+@endsection

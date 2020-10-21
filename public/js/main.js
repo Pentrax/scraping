@@ -1,5 +1,5 @@
 
-import flex from "flexible-rating"
+
 
 $(function (){
 
@@ -32,17 +32,17 @@ $(function (){
         $(".page-wrapper").addClass("toggled");
     });
 
-    $("a#fravega-filter").click(function (){
-        $.ajax({
-            type:'GET',
-            url:'/fravega',
-            data:"search="+$("#text-search").val() + "&empresa=Fravega",
-            success:function(data) {
-                $("#msg").html(data.msg);
-            }
-        });
-
-    });
+    // $("a#fravega-filter").click(function (){
+    //     $.ajax({
+    //         type:'GET',
+    //         url:'/fravega',
+    //         data:"search="+$("#text-search").val() + "&empresa=Fravega",
+    //         success:function(data) {
+    //             $("#msg").html(data.msg);
+    //         }
+    //     });
+    //
+    // });
 
     // $("#search-form").submit(function(e) {
     //   //  e.preventDefault();

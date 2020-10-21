@@ -54,47 +54,55 @@
                         <div class="sidebar-submenu">
                             <ul>
                                 <li>
-                                    <a href="{{route("filter",["search"=>$search , "empresa"=> "Fravega"])}}" id="fravega-filter">
+
+                                    <a href=" {{route("filter",["search"=>$data['search'] , "empresa"=> "Fravega","categoria" => $data['categoria']])}}" data-categoria="tecno" id="fravega-filter">
                                         Fravega
 
                                         {{--                                        <span class="badge badge-pill badge-success">Pro</span>--}}
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{route("filter",["search"=>$search , "empresa"=> "Garbarino"])}}">
+                                    <a href="{{route("filter",["search"=>$data['search'] , "empresa"=> "Garbarino","categoria" => $data['categoria']])}}">
                                         Garbarino
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{route("filter",["search"=>$search , "empresa"=> "Mercado Libre"])}}">
+                                    <a href="{{route("filter",["search"=>$data['search'] , "empresa"=> "Mercado Libre","categoria" => $data['categoria']])}}">
                                         Mercado Libre
                                     </a>
                                 </li>
                             </ul>
                         </div>
                     </li>
-{{--                    <li class="sidebar-dropdown">--}}
-{{--                        <a href="#">--}}
-{{--                            <i class="fa fa-shopping-cart"></i>--}}
-{{--                            <span>E-commerce</span>--}}
+                    <li class="sidebar-dropdown">
+                        <a href="#">
+                            <i class="fa fa-shopping-cart"></i>
+                            <span>Precio</span>
 {{--                            <span class="badge badge-pill badge-danger">3</span>--}}
-{{--                        </a>--}}
-{{--                        <div class="sidebar-submenu">--}}
-{{--                            <ul>--}}
-{{--                                <li>--}}
-{{--                                    <a href="#">Products--}}
-
-{{--                                    </a>--}}
-{{--                                </li>--}}
-{{--                                <li>--}}
-{{--                                    <a href="#">Orders</a>--}}
-{{--                                </li>--}}
-{{--                                <li>--}}
+                        </a>
+                        <div class="sidebar-submenu">
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                        Menor a Mayor
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">Mayor a Menor</a>
+                                </li>
+                                <li>
+                                    <label for=""> Desde // Hasta</label>
+                                    <input type="text">
+                                    <input type="text">
 {{--                                    <a href="#">Credit cart</a>--}}
-{{--                                </li>--}}
-{{--                            </ul>--}}
-{{--                        </div>--}}
-{{--                    </li>--}}
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fa fa-shopping-cart"></i>
+                        <a href=#>Tendencias</a>
+                    </li>
 {{--                    <li class="sidebar-dropdown">--}}
 {{--                        <a href="#">--}}
 {{--                            <i class="far fa-gem"></i>--}}

@@ -42,10 +42,11 @@ class ScrapingGarb extends BaseScraping
         $crawler = $this->goutteClient->request('GET',$url);
 
         $pages = $this->getCantidadDePaginas($crawler);
-
-         $this->getContenido($pages,$parameters,$parametros_sin_formatear,$categoria);
-
-        return $this->getBusquedaReciente($parameters);
+        if ($pages){
+            $this->getContenido($pages,$parameters,$parametros_sin_formatear,$categoria);
+            return $this->getBusquedaReciente($parameters);
+        }
+        return false;
     }
 
     private function formatParameters($parameters){
@@ -72,10 +73,13 @@ class ScrapingGarb extends BaseScraping
                     $offset = intval($offset);
                     return $offset;
                 });
+        if(count($elements) > 0){
 
-        $pages = (int) ceil(intval($elements[0]) / CANTIDAD_DE_ELEMENTOS_POR_PAGINA);
+            $pages = (int) ceil(intval($elements[0]) / CANTIDAD_DE_ELEMENTOS_POR_PAGINA);
+            return $pages;
+        }
 
-         return $pages;
+        return false;
 
     }
 
