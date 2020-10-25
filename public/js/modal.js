@@ -30,6 +30,7 @@ $("#guardar-comentario").on("click",function (event){
             if(response) {
                 $('.success').text(response.success);
                 $("#comment").modal("toggle");
+                location.reload();
 
             }
         },

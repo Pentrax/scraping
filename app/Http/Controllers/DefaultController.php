@@ -36,7 +36,7 @@ class DefaultController extends Controller
     public function search(Request $request){
 //        dd($request->all());
         $request->session()->remove("emp");
-
+        $request->session()->remove("orden");
         $search = $request->input("search");
         $categoria = $request->radio;
 
@@ -47,6 +47,7 @@ class DefaultController extends Controller
 
         $scraping = new ScrapingFactory();
         $result = $scraping->scraping($search,$categoria);
+//        dd($result);
         $data = [
             'categoria'=> $categoria,
             'result' => $result,

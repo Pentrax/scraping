@@ -20,9 +20,9 @@ class ScrapingTecnologia
 
     public function scraping($parametrs,$categoria){
 
-            $this->mercado->search($parametrs,$categoria);
-            $this->garbarino->search($parametrs,$categoria);
-            $this->fravega->search($parametrs);
+        $this->fravega->search($parametrs);
+        $this->garbarino->search($parametrs,$categoria);
+        $this->mercado->search($parametrs,$categoria);
 
         return $this->getBusqueda($parametrs,$categoria);
 

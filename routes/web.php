@@ -27,3 +27,5 @@ Route::get('/comentarios','ComentariosController@ver')->name("ver");
 
 Route::any('/remov-filter', 'FilterController@removeFilter')->name('remove-filter');
 
+Route::get('/comentarios', 'ComentariosController@getComentarios')->name('comentarios');
+

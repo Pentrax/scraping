@@ -555,3 +555,9 @@ div#Garbarino{
 .descripcion-mb30{
     margin-bottom: 30px;
 }
+
+input#filter-price{
+    max-width: 80px;
+}
+
+

@@ -83,17 +83,24 @@
                         <div class="sidebar-submenu">
                             <ul>
                                 <li>
-                                    <a href="#">
+                                    <a href="{{route("filter",["search"=>$data['search'] , "orden"=> "menor","categoria" => $data['categoria']])}}">
                                         Menor a Mayor
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">Mayor a Menor</a>
+                                    <a href="{{route("filter",["search"=>$data['search'] , "orden"=> "mayor","categoria" => $data['categoria']])}}">Mayor a Menor</a>
                                 </li>
                                 <li>
-                                    <label for=""> Desde // Hasta</label>
-                                    <input type="text">
-                                    <input type="text">
+                                    <label style="color: #f1f1f1" for=""> Desde // Hasta</label>
+                                    <div class="row">
+                                        <div class="col">
+                                            <input class="form-input" id="filter-price" type="text">
+                                            <input class="form-input"  id="filter-price" type="text">
+                                        </div>
+
+                                    </div>
+
+
 {{--                                    <a href="#">Credit cart</a>--}}
                                 </li>
                             </ul>

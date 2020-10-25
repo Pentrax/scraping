@@ -43,14 +43,21 @@ color: gray;
                             <p class="card-text descripcion-mb30">{{$item->contenido}}</p>
                             <div class="row contenedor-botones" >
                                 <div class="col">
-                                    <a href="{{$item->href}}"  class="card-link btn  btn-outline-primary" style="width: 100%" target="_blank">Ver</a>
+                                    <a href="{{$item->href}}"  class="card-link  btn  btn-outline-success" target="_blank" data-toggle="tooltip" data-placement="top" title="Ver el producto en la tienda">
+                                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                    </a>
                                 </div>
                                 <div class="col">
-                                    <a href="{{$item->href}}" class="card-link btn  btn-outline-info" data-toggle="modal" data-id="{{$item->id}}" data-titulo="{{$item->titulo}}" data-target="#comment"  style="width: 100%" target="_blank">Comentar</a>
+                                    <a href="{{$item->href}}" class="card-link  btn  btn-outline-info " data-toggle="modal" data-id="{{$item->id}}" data-titulo="{{$item->titulo}}" data-toggle="tooltip" data-placement="top" title="Comenta sobre el producto" data-target="#comment"  target="_blank">
+                                        <i class="fa fa-comment" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                                <div class="col">
+                                    <a href="{{route("comentarios",["search"=>$data['search'] , "id_product"=> $item->id,"categoria" => $data['categoria']])}}" class="card-link btn  btn-outline-warning" data-toggle="tooltip" data-placement="top" title="Ver los cometarios" data-id="{{$item->id}}" data-titulo="{{$item->titulo}}" >
+                                        <i class="fa fa-users" aria-hidden="true"></i>
+                                    </a>
                                 </div>
                             </div>
-
-
                         </div>
                     </div>
                 <br><br>
@@ -75,6 +82,7 @@ color: gray;
 
 
 @section('scripts')
+
     <script src="{{ asset('js/helper.js')}}" ></script>
 
 @endsection
