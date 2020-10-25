@@ -1,19 +1,19 @@
 
- var select = $("#select-categoria").val();
-console.log(select);
- switch (select){
-     case "tecnologia":
-         $("#tecno").prop("checked", true);
-         break;
-     case "indumentaria":
-         $("#indumentaria").prop("checked", true);
-         break;
-     case "accesorios":
-         $("#deportes").prop("checked", true);
-         break;
-     default:
-         break;
- }
+ // var select = $("#select-categoria").val();
+ //
+ // switch (select){
+ //     case "tecnologia":
+ //         $("#tecno").prop("checked", true);
+ //         break;
+ //     case "indumentaria":
+ //         $("#indumentaria").prop("checked", true);
+ //         break;
+ //     case "accesorios":
+ //         $("#deportes").prop("checked", true);
+ //         break;
+ //     default:
+ //         break;
+ // }
 
 // $("#fravega-filter").click(function (){
 //

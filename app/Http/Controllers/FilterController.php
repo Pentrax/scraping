@@ -47,20 +47,21 @@ class FilterController extends Controller
             return view('base',compact("search"));
         }
 
-        $result = $this->busquedasQueryService->getResult($search,$empresa_filter,$empresa,$orden);
+        $result = $this->busquedasQueryService->getResult($search,$empresa_filter,$empresa,$orden,$categoria);
 
         if ($result->total() == 0){
 //            dd($orden,$request->session()->get("orden"));
             $result = $this->busquedasQueryService->getBusqueda($search,$categoria,$orden);
         }
 
-
+        $empresas = $this->busquedasQueryService->getEmpresas($categoria);
         $data = [
             'result'    => $result,
             'categoria' => $categoria,
             'filter'    => $empresa_filter,
             'search'    => $search,
-            'orden'     => ($orden)?$orden:""
+            'orden'     => ($orden)?$orden:"",
+            'empresas'  => $empresas
         ];
         return view('show.list', compact("data","search"));
 
@@ -89,18 +90,21 @@ class FilterController extends Controller
             $empresa_filter = [];
         }
 
-        $result = $this->busquedasQueryService->getResult($search,$empresa_filter,$empresa);
+        $result = $this->busquedasQueryService->getResult($search,$empresa_filter,$empresa,'asc',$categoria);
 
         if ($result->total() == 0){
             $result = $this->busquedasQueryService->getBusqueda($search,$categoria);
         }
+
+        $empresas = $this->busquedasQueryService->getEmpresas($categoria);
 
         $data = [
             'result'    => $result,
             'categoria' => $categoria,
             'filter'    => $empresa_filter,
             'search'    => $search,
-            'orden'     => ''
+            'orden'     => '',
+            'empresas'  => $empresas
         ];
         return view('show.list', compact("data","search"));
     }

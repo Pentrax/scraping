@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 class BusquedasQueryService
 {
-    public function getResult($search,$empresa_filter,$empresa,$orden ="asc"){
+    public function getResult($search,$empresa_filter,$empresa,$orden ="asc",$categoria){
 
         if ($orden && $orden == "menor"){
             $orden = "asc";
@@ -25,7 +25,8 @@ class BusquedasQueryService
             ->paginate(16)
             ->appends ( array (
                 'search' => $search,
-                "empresa" => $empresa
+                "empresa" => $empresa,
+                'categoria' => $categoria
             ) );
 
         return $result;
@@ -51,5 +52,11 @@ class BusquedasQueryService
             ) );
 
         return $busqueda;
+    }
+
+    public function getEmpresas($categoria){
+
+        return DB::table("empresa")->where("categoria",$categoria)->get();
+
     }
 }

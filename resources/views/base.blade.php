@@ -41,7 +41,16 @@
                     <h1>Scraping</h1>
                 </div>
             </div>
+            <div class="br-wrapper br-theme-fontawesome-stars">
+                <select id="example"> <!-- now hidden -->
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
 
+            </div>
             @include('partials.busquedaForm')
 
             @if(isset($data['filter']))
@@ -67,6 +76,7 @@
     <script src="{{ asset('js/main.js')}}" ></script>
     <script src="{{ asset('js/filter.js')}}" ></script>
     <script src="{{ asset('js/modal.js')}}" ></script>
+
 
     @yield('scripts')
 

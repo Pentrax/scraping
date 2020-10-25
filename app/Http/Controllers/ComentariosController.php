@@ -12,7 +12,7 @@ class ComentariosController extends Controller
 
 
         $product_id = $request->get("id_product");
-
+        $categoria = $request->get("categoria");
         $result = DB::table("Busquedas")
             ->join("Comentarios","Busquedas.id","=","Comentarios.producto_id")
             ->where("Comentarios.producto_id",$product_id)
@@ -43,17 +43,20 @@ class ComentariosController extends Controller
 
         }
 
+        $empresas = $this->busquedasQueryService->getEmpresas($categoria);
+
         $data = [
             'titulo'    => $titulo,
             'src'       => $src,
             'empresa'   => $empresa,
             'result'    => $result,
             'search'    => $request->get("search"),
-            'categoria' => $request->get("categoria"),
+            'categoria' => $categoria,
             'valoracion' => $valoracion,
             'comment'       => $comment,
             'producto_id'   => $product_id,
-            'avg'   => $avg
+            'avg'   => $avg,
+            'empresas'  => $empresas
 
 
         ];

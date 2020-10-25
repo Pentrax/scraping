@@ -53,24 +53,28 @@
                         </a>
                         <div class="sidebar-submenu">
                             <ul>
-                                <li>
+                                @if(!empty($data['empresas']))
+                                    @foreach($data['empresas'] as $empresa)
+                                    <li>
 
-                                    <a href=" {{route("filter",["search"=>$data['search'] , "empresa"=> "Fravega","categoria" => $data['categoria']])}}" data-categoria="tecno" id="fravega-filter">
-                                        Fravega
+                                        <a href=" {{route("filter",["search"=>$data['search'] , "empresa"=> $empresa->empresa ,"categoria" => $data['categoria']])}}">
+                                            {{$empresa->empresa}}
 
-                                        {{--                                        <span class="badge badge-pill badge-success">Pro</span>--}}
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{route("filter",["search"=>$data['search'] , "empresa"=> "Garbarino","categoria" => $data['categoria']])}}">
-                                        Garbarino
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{route("filter",["search"=>$data['search'] , "empresa"=> "Mercado Libre","categoria" => $data['categoria']])}}">
-                                        Mercado Libre
-                                    </a>
-                                </li>
+                                            {{--                                        <span class="badge badge-pill badge-success">Pro</span>--}}
+                                        </a>
+                                    </li>
+                                    @endforeach
+{{--                                    <li>--}}
+{{--                                        <a href="{{route("filter",["search"=>$data['search'] , "empresa"=> "Garbarino","categoria" => $data['categoria']])}}">--}}
+{{--                                            Garbarino--}}
+{{--                                        </a>--}}
+{{--                                    </li>--}}
+{{--                                    <li>--}}
+{{--                                        <a href="{{route("filter",["search"=>$data['search'] , "empresa"=> "Mercado Libre","categoria" => $data['categoria']])}}">--}}
+{{--                                            Mercado Libre--}}
+{{--                                        </a>--}}
+{{--                                    </li>--}}
+                                @endif
                             </ul>
                         </div>
                     </li>
