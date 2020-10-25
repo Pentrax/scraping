@@ -18,8 +18,8 @@ class AjaxController extends Controller
             $user_id = null;
         }
         $data["user_id"] = $user_id;
-        $data["valoracion"] = 3;
-//        dd($data);
+        $data["valoracion"] = $data['rating'];
+
         $comentarios = new Comentarios();
         $comentarios->producto_id = $data['producto_id'];
         $comentarios->titulo = $data["titulo"];

@@ -14,7 +14,7 @@ $("#guardar-comentario").on("click",function (event){
     let titulo = $("#titulo").val();
     let comentario = $("#comentario").val();
     let id_producto = $("#product_id").val();
-
+    let rating      = $("#rating").val()
    // let _token   = $('meta[name="csrf-token"]').attr('content');
 
     $.ajax({
@@ -23,10 +23,11 @@ $("#guardar-comentario").on("click",function (event){
         data:{
             titulo:titulo,
             comentario:comentario,
-            producto_id: id_producto
+            producto_id: id_producto,
+            rating: rating
         },
         success:function(response){
-            console.log(response);
+
             if(response) {
                 $('.success').text(response.success);
                 $("#comment").modal("toggle");
