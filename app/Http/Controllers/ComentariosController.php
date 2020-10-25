@@ -2,12 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\BusquedasQueryService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use PhpParser\Node\Stmt\DeclareDeclare;
 
 class ComentariosController extends Controller
 {
+    public function __construct(){
+        $this->busquedasQueryService = new BusquedasQueryService();
+
+    }
+
     public function getComentarios(Request $request){
 
 
