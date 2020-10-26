@@ -13,11 +13,12 @@ class CreateEmpresasTable extends Migration
      */
     public function up()
     {
-        $this->down();
+//        $this->down();
         Schema::create('empresa', function (Blueprint $table) {
             $table->increments("id");
             $table->string("empresa");
-            $table->string("rubro");
+            $table->string("categoria");
+            $table->string("slug");
             $table->timestamps();
         });
     }

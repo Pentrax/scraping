@@ -29,3 +29,13 @@ Route::any('/remov-filter', 'FilterController@removeFilter')->name('remove-filte
 
 Route::get('/comentarios', 'ComentariosController@getComentarios')->name('comentarios');
 
+Route::get('/login', array(
+    'uses' => 'AuthController@showLogin'
+))->name("login");
+// route to process the form
+Route::post('login', array(
+    'uses' => 'AuthController@doLogin'
+));
+Route::get('logout', array(
+    'uses' => 'AuthController@doLogout'
+));

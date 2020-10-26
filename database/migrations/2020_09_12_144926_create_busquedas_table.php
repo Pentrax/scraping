@@ -21,11 +21,13 @@ class CreateBusquedasTable extends Migration
             $table->string("titulo");
             $table->string("src");
             $table->string("href");
-            $table->string("brand");
+            $table->string("brand")->type("LONGTEXT");
             $table->string("empresa");
             $table->string("busqueda");
+            $table->string("marca")->nullable();
             $table->integer("cantidad_busquedas");
-            $table->integer('user_id')->unsigned();
+            $table->integer('user_id')->unsigned()->nullable();
+            $table->string("categoria")->nullable();
            // $table->foreign("user_id")->references('id')->on('users');
             $table->timestamps();
         });

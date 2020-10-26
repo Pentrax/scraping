@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Services\BusquedasQueryService;
 use App\Services\ScrapingFactory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 
 class DefaultController extends Controller
@@ -35,6 +36,7 @@ class DefaultController extends Controller
 
 
     public function search(Request $request){
+
 
         $request->session()->remove("emp");
         $request->session()->remove("orden");

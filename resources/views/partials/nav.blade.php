@@ -10,6 +10,7 @@
                     <i class="fas fa-times"></i>
                 </div>
             </div>
+            @if(Auth::check())
         {{--            <div class="sidebar-header">--}}
         {{--                <div class="user-pic">--}}
         {{--                    <img class="img-responsive img-rounded" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"--}}
@@ -39,6 +40,40 @@
         {{--                    </div>--}}
         {{--                </div>--}}
         {{--            </div>--}}
+            @else
+                <div class="sidebar-header">
+
+                    <div class="sidebar-menu">
+                        <ul>
+                            <li class="header-menu">
+                                <span>Usuario</span>
+                            </li>
+                            <li class="sidebar-dropdown">
+                                <a href="#">
+                                    <div class="user-pic">
+                                        <img class="img-responsive img-rounded"  style="height: 6%" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
+                                             alt="User picture">
+                                    </div>
+                                    {{--                            <span class="badge badge-pill badge-warning">New</span>--}}
+                                </a>
+                                <div class="sidebar-submenu">
+                                    <ul>
+                                        <li>
+                                            <a href="{{route('login')}}" data-toggle="modal" data-target="#loginModal" style="color: #f1f1f1!important; " class="btn btn-success btn-sm"> Iniciar sesion</a>
+                                        </li>
+                                        <li style="padding-top: 4px;">
+                                            <a href="#" style="color: #f1f1f1!important;" class="btn btn-primary btn-sm"> Registrate</a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+
+            @endif
         <!-- sidebar-search  -->
             <div class="sidebar-menu">
                 <ul>
@@ -64,16 +99,7 @@
                                         </a>
                                     </li>
                                     @endforeach
-{{--                                    <li>--}}
-{{--                                        <a href="{{route("filter",["search"=>$data['search'] , "empresa"=> "Garbarino","categoria" => $data['categoria']])}}">--}}
-{{--                                            Garbarino--}}
-{{--                                        </a>--}}
-{{--                                    </li>--}}
-{{--                                    <li>--}}
-{{--                                        <a href="{{route("filter",["search"=>$data['search'] , "empresa"=> "Mercado Libre","categoria" => $data['categoria']])}}">--}}
-{{--                                            Mercado Libre--}}
-{{--                                        </a>--}}
-{{--                                    </li>--}}
+
                                 @endif
                             </ul>
                         </div>
@@ -101,10 +127,7 @@
                                             <input class="form-input" id="filter-price" type="text">
                                             <input class="form-input"  id="filter-price" type="text">
                                         </div>
-
                                     </div>
-
-
 {{--                                    <a href="#">Credit cart</a>--}}
                                 </li>
                             </ul>

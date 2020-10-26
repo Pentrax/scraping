@@ -24,6 +24,7 @@
 
     <title>Scraping Web</title>
     <link href="{{ asset('css/main.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('css/loginForm.css') }}" rel="stylesheet" type="text/css" />
 
 </head>
 <body>
@@ -69,8 +70,10 @@
     <script src="{{ asset('js/filter.js')}}" ></script>
     <script src="{{ asset('js/modal.js')}}" ></script>
     <script src="{{ asset('js/rating.js')}}" ></script>
+    <script src="{{ asset('js/login.js')}}" ></script>
 
     @yield('scripts')
 
+@include('modal.modalLogin')
 </body>
 </html>

@@ -14,7 +14,7 @@ class CreateTrandingTable extends Migration
     public function up()
     {
         $this->down();
-        Schema::create('tranding', function (Blueprint $table) {
+        Schema::create('trending', function (Blueprint $table) {
             $table->id();
             $table->string("empresa");
             $table->string("producto");
