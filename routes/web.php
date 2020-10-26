@@ -35,7 +35,7 @@ Route::get('/login', array(
 // route to process the form
 Route::post('login', array(
     'uses' => 'AuthController@doLogin'
-));
+))->name('doLogin') ;
 Route::get('logout', array(
     'uses' => 'AuthController@doLogout'
 ));

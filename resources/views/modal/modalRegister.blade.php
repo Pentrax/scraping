@@ -1,8 +1,8 @@
-<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true">
+<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModal" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Iniciar sesion</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Registrate</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -19,8 +19,10 @@
                     <p><a href="#" ><small>Olvidaste el password?</small></a></p>
                 </div>
                 <div class="form-item">
-                    <p class="pull-left" style="padding-top: 15px"><a href="#"><small>Registrase</small></a></p>
-                    <input type="submit" class="login pull-right" id="loginBtn" value="Iniciar">
+
+{{--                    <input type="submit" class="login pull-right" id="registerBtn" value="Registrase">--}}
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="button" id="registerBtn"  class="btn btn-primary">Guardar</button>
                     <div class="clear-fix"></div>
                 </div>
 

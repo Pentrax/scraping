@@ -71,9 +71,11 @@
     <script src="{{ asset('js/modal.js')}}" ></script>
     <script src="{{ asset('js/rating.js')}}" ></script>
     <script src="{{ asset('js/login.js')}}" ></script>
+    <script src="{{ asset('js/modalLogin.js')}}" ></script>
 
     @yield('scripts')
 
 @include('modal.modalLogin')
+@include('modal.modalRegister')
 </body>
 </html>
