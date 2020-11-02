@@ -526,15 +526,6 @@ body {
     border-right: none;
 }
 
-#heart {
-    color: grey;
-    font-size: 50px;
-}
-
-#heart.red {
-    color: blue;
-}
-
 div#Garbarino{
     background-color: red;
     width: 62%;
@@ -612,4 +603,34 @@ li.login  a:before{
     -moz-osx-font-smoothing: grayscale;
     margin-right: 10px;
     font-size: 8px;
+}
+
+i#heart{
+    display: inline;
+    position: absolute;
+    right: 0;
+    padding-right: 10px;
+    background-color: transparent;
+    font-size: 20px;
+    color: gray;
+}
+
+i#heart:hover{
+    display: inline;
+    position: absolute;
+    right: 0;
+    padding-right: 10px;
+    background-color: transparent;
+    font-size: 20px;
+    color: blue;
+}
+
+i#isFav{
+    display: inline;
+    position: absolute;
+    right: 0;
+    padding-right: 10px;
+    background-color: transparent;
+    font-size: 20px;
+    color: blue;
 }

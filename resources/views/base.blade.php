@@ -72,6 +72,7 @@
     <script src="{{ asset('js/rating.js')}}" ></script>
     <script src="{{ asset('js/login.js')}}" ></script>
     <script src="{{ asset('js/modalLogin.js')}}" ></script>
+    <script src="{{ asset('js/favoritosHelper.js')}}" ></script>
 
     @yield('scripts')
 

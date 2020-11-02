@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Services\BusquedasQueryService;
 use App\Services\ScrapingFactory;
+use App\Trending;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,6 +15,7 @@ class DefaultController extends Controller
 
     public function __construct(){
         $this->busquedasQueryService = new BusquedasQueryService();
+
 
     }
 
@@ -43,6 +45,11 @@ class DefaultController extends Controller
         $search = $request->input("search");
         $categoria = $request->radio;
 
+
+        $trending = new Trending;
+        $trending->categoria = $categoria;
+        $trending->busqueda = $search;
+        $trending->save();
         if (is_null($categoria)){
 
             $req = $request->all();
@@ -51,15 +58,23 @@ class DefaultController extends Controller
 
         $scraping = new ScrapingFactory();
         $result = $scraping->scraping($search,$categoria);
+//        dd($result);
         $empresas = $this->busquedasQueryService->getEmpresas($categoria);
+
+//        if (Auth::check()){
+//            $fav = $this->busquedasQueryService->getFavoritos(Auth::id());
+//        }else{
+//            $fav = null;
+//        }
 
         $data = [
             'categoria' => $categoria,
             'result'    => $result,
             'search'    => $search,
-            'empresas'  => $empresas
-        ];
+            'empresas'  => $empresas,
 
+        ];
+//            dd($result);
         return view('show.list', compact('data'));
 
     }

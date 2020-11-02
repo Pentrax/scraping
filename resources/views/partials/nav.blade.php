@@ -11,35 +11,62 @@
                 </div>
             </div>
             @if(Auth::check())
-        {{--            <div class="sidebar-header">--}}
-        {{--                <div class="user-pic">--}}
-        {{--                    <img class="img-responsive img-rounded" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"--}}
-        {{--                         alt="User picture">--}}
-        {{--                </div>--}}
-        {{--                <div class="user-info">--}}
-        {{--          <span class="user-name">Jhon--}}
-        {{--            <strong>Smith</strong>--}}
-        {{--          </span>--}}
-        {{--                    <span class="user-role">Administrator</span>--}}
-        {{--                    <span class="user-status">--}}
-        {{--            <i class="fa fa-circle"></i>--}}
-        {{--            <span>Online</span>--}}
-        {{--          </span>--}}
-        {{--                </div>--}}
-        {{--            </div>--}}
+                    <div class="sidebar-header">
+                        <div class="user-pic">
+                            <img class="img-responsive img-rounded" style="height: 6%" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
+                                 alt="User picture">
+                        </div>
+                        <div class="user-info">
+                  <span class="user-name">
+                      {{Auth::user()->name}}
+
+                  </span>
+{{--                            <span class="user-role">Administrator</span>--}}
+                            <span class="user-status">
+                    <i class="fa fa-circle"></i>
+                    <span>Online</span>
+                  </span>
+                        </div>
+                    </div>
+                <div class="sidebar-menu">
+                    <ul>
+
+                        <li class="sidebar-dropdown">
+                            <a href="#">
+                                <i class="fa fa-wrench"  aria-hidden="true"></i>
+                                <span>Opciones</span>
+                                {{--                            <span class="badge badge-pill badge-warning">New</span>--}}
+                            </a>
+                            <div class="sidebar-submenu">
+                                <ul>
+                                    <li>
+                                        <a href="{{route('logout')}}">
+                                           Salir
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{route('show-favorito',["search"=>$data['search'] ,"user_id"=> Auth::user()->id ,"categoria" => $data['categoria']])}}">
+                                           Favoritos
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
         <!-- sidebar-header  -->
-        {{--            <div class="sidebar-search">--}}
-        {{--                <div>--}}
-        {{--                    <div class="input-group">--}}
-        {{--                        <input type="text" class="form-control search-menu" id="inpunt-search" placeholder="filtrar...">--}}
-        {{--                        <div class="input-group-append">--}}
-        {{--              <span class="input-group-text">--}}
-        {{--                <a href="#" id="search-filter-btn" class=" btn-xs"><i class="fa fa-search"  aria-hidden="true"></i></a>--}}
-        {{--              </span>--}}
-        {{--                        </div>--}}
-        {{--                    </div>--}}
-        {{--                </div>--}}
-        {{--            </div>--}}
+{{--                    <div class="sidebar-search">--}}
+{{--                        <div>--}}
+{{--                            <div class="input-group">--}}
+{{--                                <input type="text" class="form-control search-menu" id="inpunt-search" placeholder="filtrar...">--}}
+{{--                                <div class="input-group-append">--}}
+{{--                      <span class="input-group-text">--}}
+{{--                        <a href="#" id="search-filter-btn" class=" btn-xs"><i class="fa fa-search"  aria-hidden="true"></i></a>--}}
+{{--                      </span>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
             @else
                 <div class="sidebar-header">
 
@@ -56,13 +83,17 @@
                                     </div>
                                     {{--                            <span class="badge badge-pill badge-warning">New</span>--}}
                                 </a>
-                                <div class="sidebar-submenu">
+                                <div class="sidebar-submenu" style="background-color: #30353E">
                                     <ul>
                                         <li>
-                                            <a href="{{route('login')}}" data-toggle="modal" data-target="#loginModal" style="color: #f1f1f1!important; " class="btn btn-success btn-sm"> Iniciar sesion</a>
+
+                                        </li>
+                                        <li>
+                                            <a href="{{route('login')}}" data-toggle="modal"  data-toggle="tooltip" data-placement="top" title="Inicia Sesion" data-target="#loginModal" > <i class="fas fa-sign-in-alt" style="color: green"></i> </a>
                                         </li>
                                         <li style="padding-top: 4px;">
-                                            <a href="#" style="color: #f1f1f1!important;" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#registerModal"> Registrate</a>
+                                            <a href="#" data-toggle="modal" data-target="#registerModal" data-toggle="tooltip" data-placement="top" title="Registrate"><i class="fa fa-registered" aria-hidden="true"></i>
+                                                 </a>
                                         </li>
 
                                     </ul>

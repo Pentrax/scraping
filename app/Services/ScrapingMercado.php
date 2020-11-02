@@ -12,15 +12,26 @@ use PhpParser\Node\Stmt\DeclareDeclare;
 use Symfony\Component\DomCrawler\Crawler;
 
 const CANTIDAD_DE_ELEMENTOS_POR_PAGINA_MERCADO = 50;
-const EMPRESA_MERCADO= "MERCADO LIBRE";
+const EMPRESA_MERCADO= 3;
 
 class ScrapingMercado extends BaseScraping
 {
 
+    protected $param;
+    protected $busquedasQueryService;
+
+    public function __construct($param)
+    {
+        parent::__construct();
+        $this->param = $param;
+        $this->busquedasQueryService = new BusquedasQueryService($param);
+
+    }
+
     public function search($parameters,$categoria){
 
         $parametros_sin_formatear = strtolower($parameters);
-        $busqueda = $this->getBusquedaReciente(strtolower($parameters));
+        $busqueda = $this->busquedasQueryService->getBusquedaReciente(strtolower($parameters),EMPRESA_MERCADO);
 
         if ($busqueda->count() > 0){
             return  true;
@@ -38,7 +49,7 @@ class ScrapingMercado extends BaseScraping
 
          $this->getContenido($pages,$pre,$parametros_sin_formatear,$categoria);
 
-        return $this->getBusquedaReciente($parameters);
+        return $this->busquedasQueryService->getBusquedaReciente($parameters,EMPRESA_MERCADO);
     }
 
     private function formatParameters($parameters){
@@ -117,6 +128,10 @@ class ScrapingMercado extends BaseScraping
                         $title = $node->filter(".ui-search-item__title")->text();
                         $marca = null;
 
+                    $brand = 'https://http2.mlstatic.com/frontend-assets/ui-navigation/5.10.2/mercadolibre/logo__large_plus.png';
+                    $this->busquedasQueryService->saveBusquedaLive(intval($price),$contenido,$title,$src,$href,EMPRESA_MERCADO,$this->param);
+//                    $this->saveBusquedaLive(intval($price),$contenido,$title,$src,$href,$brand,EMPRESA_MERCADO,$this->param);
+
                         return [
                             'precio'    =>intval($price),
                             'contenido' => $contenido,
@@ -134,50 +149,70 @@ class ScrapingMercado extends BaseScraping
 
 
 
-       $this->saveBusqueda($data,$parametros_sin_formatear,$categoria);
+//       $this->saveBusqueda($data,$parametros_sin_formatear,$categoria);
 
         return true;
     }
 
+//    public function saveBusquedaLive($precio,$contenido,$titulo,$src,$href,$brand,$empresa,$busqueda){
+//
+//        $busqueda = new Busquedas();
+//
+//        $busqueda->precio = $precio;
+//        $busqueda->contenido = $contenido;
+//        $busqueda->titulo = $titulo;
+//        $busqueda->src = $src;
+//        $busqueda->href = $href;
+//        $busqueda->brand = $brand;
+//        $busqueda->empresa = $empresa;
+//        $busqueda->busqueda = $this->param;
+//        $busqueda->cantidad_busquedas = 1;
+//        $busqueda->categoria = "tecnologia";
+//        $busqueda->save();
+//
+//
+//    }
 
-    public function saveBusqueda($data,$parameters,$categoria){
 
-        foreach ($data as $info){
+//    public function saveBusqueda($data,$parameters,$categoria){
+//
+//        foreach ($data as $info){
+//
+//            foreach ($info as $item){
+//
+//                $busqueda = new Busquedas();
+//
+//                $busqueda->precio = $item["precio"];
+//                $busqueda->contenido = $item["contenido"];
+//                $busqueda->titulo = $item["titulo"];
+//                $busqueda->src = $item["src"];
+//                $busqueda->href = $item["href"];
+//                $busqueda->brand = $item["brand"];
+//                $busqueda->empresa = $item["empresa"];
+//                $busqueda->busqueda = strtolower($parameters);
+//                $busqueda->cantidad_busquedas = 1;
+//                $busqueda->categoria = $categoria;
+//                $busqueda->marca = $item["marca"];
+//
+//                $busqueda->save();
+//            }
+//        }
+//
+//    }
 
-            foreach ($info as $item){
-
-                $busqueda = new Busquedas();
-
-                $busqueda->precio = $item["precio"];
-                $busqueda->contenido = $item["contenido"];
-                $busqueda->titulo = $item["titulo"];
-                $busqueda->src = $item["src"];
-                $busqueda->href = $item["href"];
-                $busqueda->brand = $item["brand"];
-                $busqueda->empresa = $item["empresa"];
-                $busqueda->busqueda = strtolower($parameters);
-                $busqueda->cantidad_busquedas = 1;
-                $busqueda->categoria = $categoria;
-                $busqueda->marca = $item["marca"];
-
-                $busqueda->save();
-            }
-        }
-
-    }
-
-    public function getBusquedaReciente($parameters){
-
-        $busqueda = DB::table("Busquedas")
-            ->where("busqueda",$parameters)
-            ->where("empresa","Mercado Libre")
-            ->orderBy("precio","asc")
-            ->paginate(5)
-            ->appends ( array (
-                'search' => $parameters
-            ) );
-
-        return $busqueda;
-    }
+//    public function getBusquedaReciente($parameters,$empresa_id){
+//
+//        $busqueda = DB::table("Busquedas AS bu")
+//            ->join('categoria AS cat', 'bu.categoria_id', '=', 'cat.id')
+//            ->join('empresa AS emp', 'bu.empresa_id', '=', 'emp.id')
+//            ->where("bu.busqueda",$parameters)
+//            ->where("bu.empresa_id",$empresa_id)
+//            ->orderBy("precio","asc")
+//            ->paginate(5)
+//            ->appends ( array (
+//                'search' => $parameters
+//            ) );
+//        return $busqueda;
+//    }
 
 }

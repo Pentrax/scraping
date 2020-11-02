@@ -1,55 +1,62 @@
-$("#loginBtn").on("click",function (event){
-    event.preventDefault();
 
-    let email = $("#email").val();
-    let password = $("#password").val();
+$(document).ready(function() {
 
-    // let _token   = $('meta[name="csrf-token"]').attr('content');
+    $("#loginBtn").on("click",function (event){
+        event.preventDefault();
 
-    $.ajax({
-        url: "/login",
-        type:"POST",
-        data:{
-            email:email,
-            password:password,
-        },
-        success:function(response){
+        let email = $("#email").val();
+        let password = $("#password").val();
 
-            if(response) {
-                // $('.success').text(response.success);
-                $("#comment").modal("toggle");
-                location.reload();
+        // let _token   = $('meta[name="csrf-token"]').attr('content');
 
-            }
-        },
+        $.ajax({
+            url: "/doLogin",
+            type:"POST",
+            data:{
+                email:email,
+                password:password,
+            },
+            success:function(response){
+
+                if(response) {
+                    // $('.success').text(response.success);
+                    $("#comment").modal("toggle");
+                     location.reload();
+
+                }
+            },
+        });
+
     });
 
-});
+    $("#registerBtn").on("click", function (event) {
 
-$("#registerBtn").on("click",function (event){
-    event.preventDefault();
 
-    let email = $("#email").val();
-    let password = $("#password").val();
+        event.preventDefault();
 
-    // let _token   = $('meta[name="csrf-token"]').attr('content');
-        console.log("sfasfa");
-    $.ajax({
-        url: "/doLogin",
-        type:"POST",
-        data:{
-            email:email,
-            password:password,
-        },
-        success:function(response){
+        let email = $("#email_user").val();
+        let password = $("#password_user").val();
+        let name = $("#name_user").val()
+        // let _token   = $('meta[name="csrf-token"]').attr('content');
 
-            if(response) {
-                // $('.success').text(response.success);
-                $("#comment").modal("toggle");
-                location.reload();
+        $.ajax({
+            url: "/register",
+            type:"POST",
+            data:{
+                email:email,
+                password:password,
+                name_user: name
+            },
+            success:function(response){
 
-            }
-        },
+                if(response) {
+                    // $('.success').text(response.success);
+                    $("#comment").modal("toggle");
+                     location.reload();
+
+                }
+            },
+        });
+
     });
-
 });

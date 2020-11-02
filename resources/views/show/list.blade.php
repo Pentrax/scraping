@@ -19,21 +19,28 @@
                         <div class="card-body">
                             @if($item->empresa == "Fravega")
                             <div style="width: 48%">
-                                {!! $item->brand !!} <i class="fa fa-heart"  id="heart" style="
+                                {!! $item->logo !!}
+                                @if(\Illuminate\Support\Facades\Auth::check())
+                                    @if($item->bu_id == $item->fav_bu)
 
-display: inline;
-position: absolute;
-right: 0;
-padding-right: 10px;
-background-color: transparent;
-font-size: 20px;
-color: gray;
-"></i>
+                                    <i class="fa fa-heart"  id="isFav" data-fav="{{$item->fav_bu}}" data-id="{{$item->id}}" data-user="{{Auth::user()->id}}" ></i>
+                                    @else
+                                        <i class="fa fa-heart"  id="heart" data-fav="{{$item->fav_bu}}" data-id="{{$item->id}}" data-user="{{Auth::user()->id}}" ></i>
+                                    @endif
+                                @endif
                             </div>
 
                             @else
                                 <div id="{{$item->empresa}}">
-                                <img src="{{$item->brand}}" width="115" itemprop="image" >
+                                    @if(\Illuminate\Support\Facades\Auth::check())
+                                        @if($item->bu_id == $item->fav_bu)
+
+                                            <i class="fa fa-heart"  id="isFav" data-fav="{{$item->fav_bu}}" data-id="{{$item->id}}" data-user="{{Auth::user()->id}}" ></i>
+                                        @else
+                                            <i class="fa fa-heart"  id="heart" data-fav="{{$item->fav_bu}}" data-id="{{$item->id}}" data-user="{{Auth::user()->id}}" ></i>
+                                        @endif
+                                    @endif
+                                <img src="{{$item->logo}}" width="115" itemprop="image" >
                                 </div>
                             @endif
 

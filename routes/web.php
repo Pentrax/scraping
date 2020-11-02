@@ -29,13 +29,16 @@ Route::any('/remov-filter', 'FilterController@removeFilter')->name('remove-filte
 
 Route::get('/comentarios', 'ComentariosController@getComentarios')->name('comentarios');
 
-Route::get('/login', array(
-    'uses' => 'AuthController@showLogin'
-))->name("login");
+Route::get('/login', array('uses' => 'AuthController@showLogin'))->name("login");
 // route to process the form
-Route::post('login', array(
-    'uses' => 'AuthController@doLogin'
-))->name('doLogin') ;
-Route::get('logout', array(
-    'uses' => 'AuthController@doLogout'
-));
+Route::post('/doLogin', array('uses' => 'AuthController@doLogin'))->name('doLogin') ;
+
+Route::get('/logout', array('uses' => 'AuthController@doLogout'))->name('logout');
+
+Route::post('/register', array('uses' => 'AuthController@register'));
+
+Route::post('/add-favorito','FavoritosController@addFavorito')->name("add-favorito");
+
+Route::get('/show-favorito','FavoritosController@showFavorito')->name("show-favorito");
+
+Route::any('/delete-favorito', 'FavoritosController@delete')->name('delete-favorito');

@@ -9,12 +9,16 @@
             </div>
             <div class="modal-body" style="padding-top: 34px">
                 <div class="form-item">
+                    <p class="formLabel">Nombre</p>
+                    <input type="string" name="name_user" id="name_user" class="form-style"  />
+                </div>
+                <div class="form-item">
                     <p class="formLabel">Email</p>
-                    <input type="email" name="email" id="email" class="form-style" autocomplete="off"/>
+                    <input type="email" name="email_user" id="email_user" class="form-style"  />
                 </div>
                 <div class="form-item">
                     <p class="formLabel">Password</p>
-                    <input type="password" name="password" id="password" class="form-style" />
+                    <input type="password" name="password_user" id="password_user" class="form-style" />
                     <!-- <div class="pw-view"><i class="fa fa-eye"></i></div> -->
                     <p><a href="#" ><small>Olvidaste el password?</small></a></p>
                 </div>

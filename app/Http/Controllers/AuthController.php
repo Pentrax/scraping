@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Validation\Validator;
 
 class AuthController extends Controller
@@ -16,29 +20,40 @@ class AuthController extends Controller
 
     public function doLogout()
     {
-        Auth::logout(); // logging out user
-        return Redirect::to('login'); // redirection to login screen
+        Auth::logout();
+
+        return Redirect::to('/');
     }
 
-    public function doLogin()
+    public function doLogin(Request $request)
     {
 
-          // create our user data for the authentication
-          $userdata = array(
-              'email' => Input::get('email') ,
-              'password' => Input::get('password')
-          );
-            dd($userdata);
-          // attempt to do the login
-          if (Auth::attempt($userdata))
+          $credentials = $request->only('email','password');
+
+          if (Auth::attempt($credentials))
           {
-              // validation successful
-              // do whatever you want on success
+              return Redirect::to('/');
           }else{
-              // validation not successful, send back to form
-              return Redirect::to('checklogin');
+
+//              return Redirect::to('checklogin');
           }
       }
-//      }
-//}
+
+      public function register(Request $request){
+
+          $userdata = array(
+              'email'       => $request->get('email') ,
+              'password'    => $request->get('password'),
+              'name'        => $request->get('name_user')
+          );
+           
+          $user = new User();
+          $user->password = Hash::make($userdata['password']);
+          $user->email = $userdata['email'];
+          $user->name = $userdata['name'];
+          $user->save();
+
+          auth()->login($user);
+          return response()->json(['success'=>'Ajax request submitted successfully']);
+      }
 }
