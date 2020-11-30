@@ -5,15 +5,16 @@ namespace App\Services;
 
 use Goutte\Client;
 use GuzzleHttp\Client as GuzzleClient;
-
-class BaseScraping
+use Symfony\Component\Panther\Client as PantherClient;
+use Symfony\Component\BrowserKit\HttpBrowser;
+use Symfony\Component\HttpClient\HttpClient as cl;
+class BaseScrapingJs
 {
-    protected $goutteClient;
+    protected $client;
     protected $guzzleClient;
 
     public function __construct()
     {
-        $this->goutteClient = new Client();
         $this->guzzleClient = new GuzzleClient(
             array(
                 'timeout' => 60,
@@ -28,7 +29,12 @@ class BaseScraping
                 ]
             )
         );
-        $this->goutteClient->setClient($this->guzzleClient);
+
+        $this->client = PantherClient::createChromeClient()->start();
+
+
+//        $this->client->setClient($guzzleClient);
     }
+
 
 }

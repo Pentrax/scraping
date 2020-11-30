@@ -164,10 +164,10 @@
                             </ul>
                         </div>
                     </li>
-                    <li>
-                        <i class="fa fa-shopping-cart"></i>
-                        <a href=#>Tendencias</a>
-                    </li>
+{{--                    <li>--}}
+{{--                        <i class="fa fa-shopping-cart"></i>--}}
+{{--                        <a href=#>Tendencias</a>--}}
+{{--                    </li>--}}
 {{--                    <li class="sidebar-dropdown">--}}
 {{--                        <a href="#">--}}
 {{--                            <i class="far fa-gem"></i>--}}

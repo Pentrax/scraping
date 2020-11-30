@@ -33,7 +33,7 @@
                 <div class="coment-bottom bg-white p-2 px-4">
 {{--                    <div class="d-flex flex-row add-comment-section mt-4 mb-4"><img class="img-fluid img-responsive rounded-circle mr-2" src="https://i.imgur.com/qdiP4DB.jpg" width="38"><input type="text" class="form-control mr-3" placeholder="Add comment"><button class="btn btn-primary" type="button">Comment</button></div>--}}
 {{--                    {{dd($data['result'])}}--}}
-                    @foreach($data['result'] as $comment)
+                    @foreach($data['result']->items() as $comment)
                         <div class="commented-section mt-2">
                             <div class="d-flex flex-row align-items-center commented-user">
                                 <h5 class="mr-2">{{$comment->titulo}}</h5><span class="dot mb-1"></span><span class="mb-1 ml-2"> <i class="fa fa-star"  style="color: gold" aria-hidden="true"></i> {{$comment->valoracion}}</span>

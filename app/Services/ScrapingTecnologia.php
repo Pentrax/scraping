@@ -15,11 +15,12 @@ class ScrapingTecnologia
         $this->garbarino = new ScrapingGarb($parameter);
         $this->fravega = new ScrapingFrav($parameter);
         $this->mercado = new ScrapingMercado($parameter);
+//        $this->musimundo = new ScrapingMusimundo($parameter);
 
     }
 
     public function scraping($parametrs,$categoria){
-
+//         $this->musimundo->search($parametrs);
         $this->fravega->search($parametrs);
         $this->garbarino->search($parametrs,$categoria);
         $this->mercado->search($parametrs,$categoria);

@@ -6,13 +6,15 @@ namespace App\Services;
 use App\Busquedas;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\DomCrawler\Crawler;
+use Symfony\Component\Panther\Client as PantherClient;
+use Symfony\Component\DomCrawler\Crawler as DomCrawler;
 
-const CANTIDAD_DE_ELEMENTOS_POR_PAGINA_F = 48;
-const FRAVEGA_ID =1;
+const CANTIDAD_DE_ELEMENTOS_POR_PAGINA_MUSI = 48;
+const MUSIMUNDO_ID =1;
 
 
 
-class ScrapingFrav extends BaseScraping
+class ScrapingMusimundo extends BaseScraping
 {
     protected $param;
     protected $busquedasQueryService;
@@ -30,24 +32,21 @@ class ScrapingFrav extends BaseScraping
 
         $parametros_sin_formatear = strtolower($parameters);
 
-        $busqueda = $this->busquedasQueryService->getBusquedaReciente(strtolower($parameters),FRAVEGA_ID);
+//        $busqueda = $this->busquedasQueryService->getBusquedaReciente(strtolower($parameters),FRAVEGA_ID);
 
-        if ($busqueda->count() > 0){
-            return  true;
-        }
-
-
-        $parameters = $this->formatParameters($parameters);
+//        if ($busqueda->count() > 0){
+//            return  true;
+//        }
 
 
-        $url = "https://www.fravega.com/l/?keyword={$parameters}";
 
+//        $url = "https://www.musimundo.com/mi-musimundo/search?text={$parameters}";
+        $url = "https://www.opensports.com.ar/catalogsearch/result/?q=remera";
         $crawler = $this->goutteClient->request('GET',$url);
 
-        $pages = $this->getCantidadDePaginas($crawler);
-        if ($pages == 0){
-            return  true;
-        }
+
+//        $pages = $this->getCantidadDePaginas($crawler);
+            $pages = 1;
          $this->getContenido($pages,$parameters,$parametros_sin_formatear);
 
         return $this->busquedasQueryService->getBusquedaReciente($parameters,FRAVEGA_ID);
@@ -70,12 +69,15 @@ class ScrapingFrav extends BaseScraping
 
     private function getCantidadDePaginas(Crawler $crawler){
 
-        $elements = $crawler->filter(".listingDesktopstyled__TotalResult-wzwlr8-2")->each(function (Crawler $node) {
-                    $offset = $node->filter("span")->html();
+        $elements = $crawler->filter(".toolbar")->each(function (Crawler $node) {
+//                    dd($node->html());
+                    $offset = $node->filter("p.toolbar-amount")->html();
+                    dd($offset);
                     $offset = intval($offset);
 
                     return $offset;
                 });
+        dd($elements);
          if (isset($elements[0])){
 
              $pages = (int) ceil(intval($elements[0]) / 15);
@@ -91,16 +93,13 @@ class ScrapingFrav extends BaseScraping
     private function getContenido($pages,$parameters,$parametros_sin_formatear){
 
         $data = [];
-
-        if ($pages > 3){
-            $pages = 2;
-        }
+//        dd($this->param);
         for ($i=1;$i <= $pages;$i++){
 
-            $uri = "https://www.fravega.com/l/?keyword={$parameters}&page={$i}";
+            $uri = "https://www.opensports.com.ar/catalogsearch/result/?q=remera";
             $crawler = $this->goutteClient->request('GET',$uri);
-            $data[$i] = $crawler->filter('.ProductCard__Card-sc-1w5guu7-2')->each(function (Crawler $node) {
-//                dd($node->html());
+            $data[$i] = $crawler->filter('.products-grid')->each(function (Crawler $node) {
+                dd($node->html());
                 //dd($node->filter(".PieceTitle-sc-1eg7yvt-0")->text());
                 $src = $node->filter('img')->attr('src');
                 $href = "https://www.fravega.com".$node->filter('a')->attr('href');

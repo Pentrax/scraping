@@ -19,53 +19,59 @@ class ComentariosController extends Controller
 
         $product_id = $request->get("id_product");
         $categoria = $request->get("categoria");
-        $result = DB::table("Busquedas")
-            ->join("Comentarios","Busquedas.id","=","Comentarios.producto_id")
+        $results = DB::table("Busquedas as bu")
+            ->join("Comentarios","bu.id","=","Comentarios.producto_id")
+            ->join('empresa AS emp', 'bu.empresa_id', '=', 'emp.id')
             ->where("Comentarios.producto_id",$product_id)
             ->paginate(16)
             ;
 
-        if ($result->total() == 0){
+        $data['search'] = $request->get("search");
+        $data['categoria'] = $categoria;
+        $data['producto_id'] =  $product_id;
 
-        $result = DB::table("Busquedas")
+        if ($results->total() == 0){
+
+        $results = DB::table("Busquedas")
             ->where("id",$product_id)
             ->first();
 
             $comment = false;
             $valoracion = 0;
-            $titulo = $result->titulo;
-            $src = $result->src;
-            $empresa = $result->empresa;
+            $titulo = $results->titulo;
+            $src = $results->src;
+            $empresa = $results->empresa;
             $avg = 0;
         }else{
 
-            $comment = true;
-            $valoracion = $result->items()[0]->valoracion;
-            $titulo = $result->items()[0]->titulo;
-            $src = $result->items()[0]->src;
-            $empresa = $result->items()[0]->empresa;
+            $data['src'] = $results->items()[0]->src;
+            $data['titulo'] = $results->items()[0]->titulo;
+            $data['comment'] = true;
+            $data['result'] =  $results;
+            foreach ($results->items() as $result){
 
-            $avg = $this->valoracionAvg($result->items());
+                $data[] = [
+//                    'titulo'    => $result->titulo,
+//                    'src'       => $result->src,
+                    'empresa'   => $result->empresa,
+//                    'result'    => $results,
+//                    'search'    => $request->get("search"),
+//                    'categoria' => $categoria,
+                    'valoracion' => $result->valoracion,
+                    'producto_id'   => $product_id,
+//                    'avg'   => $this->valoracionAvg($result),
+                    'empresas'  => $this->busquedasQueryService->getEmpresas($categoria)
+
+
+                ];
+
+
+            }
+//            dd($data);
+            $data['avg'] = $this->valoracionAvg($results);
+
 
         }
-
-        $empresas = $this->busquedasQueryService->getEmpresas($categoria);
-
-        $data = [
-            'titulo'    => $titulo,
-            'src'       => $src,
-            'empresa'   => $empresa,
-            'result'    => $result,
-            'search'    => $request->get("search"),
-            'categoria' => $categoria,
-            'valoracion' => $valoracion,
-            'comment'       => $comment,
-            'producto_id'   => $product_id,
-            'avg'   => $avg,
-            'empresas'  => $empresas
-
-
-        ];
 
 
         return view('comentarios', compact("data"));
@@ -77,6 +83,7 @@ class ComentariosController extends Controller
 
         $avg = 0;
         foreach($result as $value){
+
             $avg = $avg + $value->valoracion;
         }
 

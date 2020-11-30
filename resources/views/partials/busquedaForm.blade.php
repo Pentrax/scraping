@@ -7,7 +7,7 @@
         {!!  Form::token() !!}
         <div class="form-group  mb-2" style="padding-top: 15px">
 
-            {!!  Form::text('search', $data['search'],['class' => 'form-control','style' => 'width:80%','placeholder'=> 'encontra lo que buscas ...',"id"=> "text-search",'required']); !!}
+            {!!  Form::text('search', $data['search'],['class' => 'form-control','style' => 'width:80%;border-radius:23px;','placeholder'=> 'encontra lo que buscas ...',"id"=> "text-search",'required']); !!}
             {!!  Form::submit('Busca',['class'=> 'btn btn-outline-success my-2 my-sm-0 ',"style"=>'margin-left: 5px','id'=> 'search-btn']) !!}
         </div>
         <div style="

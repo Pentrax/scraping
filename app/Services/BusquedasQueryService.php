@@ -30,9 +30,11 @@ class BusquedasQueryService
         $result = DB::table("Busquedas AS bu")
             ->join('categoria AS cat', 'bu.categoria_id', '=', 'cat.id')
             ->join('empresa AS emp', 'bu.empresa_id', '=', 'emp.id')
+            ->leftJoin('favoritos AS fav','bu.id','=','fav.busqueda_id')
             ->where("bu.busqueda",$search)
             ->whereIn("emp.empresa",$empresa_filter)
 //            ->where('categoria',$categoria)
+            ->select('*','bu.id as bu_id','fav.busqueda_id as fav_bu')
             ->orderBy("bu.precio",$orden)
             ->paginate(16)
             ->appends ( array (
@@ -56,8 +58,10 @@ class BusquedasQueryService
         $busqueda = DB::table("Busquedas AS bu")
             ->join('categoria AS cat', 'bu.categoria_id', '=', 'cat.id')
             ->join('empresa AS emp', 'bu.empresa_id', '=', 'emp.id')
+            ->leftJoin('favoritos AS fav','bu.id','=','fav.busqueda_id')
             ->where("bu.busqueda",$parameters)
             ->where("cat.categoria",$categoria)
+            ->select('*','bu.id as bu_id','fav.busqueda_id as fav_bu')
             ->orderBy("bu.precio",$orden)
             ->paginate(16)
             ->appends ( array (

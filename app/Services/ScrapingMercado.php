@@ -46,7 +46,9 @@ class ScrapingMercado extends BaseScraping
         $crawler = $this->goutteClient->request('GET',$url);
 
         $pages = $this->getCantidadDePaginas($crawler);
-
+        if ($pages == 0){
+            return  true;
+        }
          $this->getContenido($pages,$pre,$parametros_sin_formatear,$categoria);
 
         return $this->busquedasQueryService->getBusquedaReciente($parameters,EMPRESA_MERCADO);

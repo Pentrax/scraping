@@ -20,9 +20,9 @@ $(document).ready(function() {
 
                 if(response) {
                     // $('.success').text(response.success);
-                    $("#comment").modal("toggle");
-                     location.reload();
-
+                    $("#loginModal").modal("toggle");
+                     // location.reload();
+                //
                 }
             },
         });

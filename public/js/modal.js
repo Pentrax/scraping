@@ -15,7 +15,8 @@ $("#guardar-comentario").on("click",function (event){
     let comentario = $("#comentario").val();
     let id_producto = $("#product_id").val();
     let rating      = $("#rating").val()
-   // let _token   = $('meta[name="csrf-token"]').attr('content');
+console.log("hoal")
+   console.log(id_producto);
 
     $.ajax({
         url: "/ajax-request",

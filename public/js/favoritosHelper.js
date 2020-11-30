@@ -10,18 +10,16 @@ $(document).ready(function() {
         $.ajax({
             url: "/add-favorito",
             type:"POST",
+            async:false,
             data:{
                 id:id,
                 user:user,
             },
             success:function(response){
-
                 if(response) {
-                    console.log(response);
-                    // $('.success').text(response.success);
-                    // $("#comment").modal("toggle");
-                    // location.reload();
-
+                    $("i[data-id="+id+"]").css("color","blue");
+                    $("div[data-id="+id+"]").html("<div class='alert alert-success' role='alert'>Ya lo tenes en favoritos !</div>");
+                    setTimeout( function(){$("div[data-id="+id+"]").fadeOut();} , 4000);
                 }
             },
         });

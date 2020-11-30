@@ -51,6 +51,10 @@ class ScrapingGarb extends BaseScraping
         $crawler = $this->goutteClient->request('GET',$url);
 
         $pages = $this->getCantidadDePaginas($crawler);
+
+        if ($pages == 0){
+            return  true;
+        }
         if ($pages){
             $this->getContenido($pages,$parameters,$parametros_sin_formatear,$categoria);
             return $this->busquedasQueryService->getBusquedaReciente($parameters,GARBARINO);
@@ -97,6 +101,9 @@ class ScrapingGarb extends BaseScraping
 
         $data = [];
 
+        if ($pages > 3){
+            $pages = 2;
+        }
         for ($i=1;$i <= $pages;$i++){
             $uri = "https://www.garbarino.com/q/{$parameters}/srch?page={$i}&q";
 
