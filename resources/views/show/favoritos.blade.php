@@ -10,7 +10,7 @@
             </div>
         </div>
     </div>
-
+<div id="msgError"></div>
     <table class="table">
         <thead>
         <tr>

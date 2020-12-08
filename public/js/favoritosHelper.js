@@ -40,12 +40,12 @@ $(document).ready(function() {
             },
             success:function(response){
 
-                if(response) {
+                if(response.success == 200) {
                     console.log(response);
-                    // $('.success').text(response.success);
-                    // $("#comment").modal("toggle");
-                    // location.reload();
+                    location.reload();
 
+                }else{
+                    $("div#msgError").html("<div class='alert alert-danger' role='alert'>No pudimos eliminar este producto</div>");
                 }
             },
         });

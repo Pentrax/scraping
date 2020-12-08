@@ -89,10 +89,9 @@
 
                                         </li>
                                         <li>
-                                            <a href="{{route('login')}}" data-toggle="modal"  data-toggle="tooltip" data-placement="top" title="Inicia Sesion" data-target="#loginModal" > <i class="fas fa-sign-in-alt" style="color: green"></i> </a>
-                                        </li>
+                                            <a href="{{route('login')}}" data-toggle="modal"  data-toggle="tooltip" data-placement="top" title="Inicia Sesion" data-target="#loginModal" > Iniciar</a>                                        </li>
                                         <li style="padding-top: 4px;">
-                                            <a href="#" data-toggle="modal" data-target="#registerModal" data-toggle="tooltip" data-placement="top" title="Registrate"><i class="fa fa-registered" aria-hidden="true"></i>
+                                            <a href="#" data-toggle="modal" data-target="#registerModal" data-toggle="tooltip" data-placement="top" title="Registrate">Registrate
                                                  </a>
                                         </li>
 

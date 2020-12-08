@@ -48,13 +48,22 @@ class FilterController extends Controller
         }
 
         $result = $this->busquedasQueryService->getResult($search,$empresa_filter,$empresa,$orden,$categoria);
-
+        $empresas = $this->busquedasQueryService->getEmpresas($categoria);
         if ($result->total() == 0){
 //            dd($orden,$request->session()->get("orden"));
-            $result = $this->busquedasQueryService->getBusqueda($search,$categoria,$orden);
+            $data = [
+                'result'    => $result,
+                'categoria' => $categoria,
+                'filter'    => $empresa_filter,
+                'search'    => $search,
+                'orden'     => ($orden)?$orden:"",
+                'empresas'  => $empresas
+            ];
+            return view('show.sinResultados', compact("data","search"));
+//            $result = $this->busquedasQueryService->getBusqueda($search,$categoria,$orden);
         }
 
-        $empresas = $this->busquedasQueryService->getEmpresas($categoria);
+
         $data = [
             'result'    => $result,
             'categoria' => $categoria,

@@ -53,7 +53,7 @@ class FavoritosController extends Controller
 
          Favoritos::where('busqueda_id',$id)->where('usuario_id',$user_id)->delete();
 
-        return response()->json(['success'=>'Ajax request submitted successfully']);
+        return response()->json(['success'=>200]);
 
     }
 
